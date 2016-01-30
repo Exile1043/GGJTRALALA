@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/Turn Logic.unity
+- path: Assets/_Scenes/Conditions.unity
   isLoaded: 1
   isActive: 1

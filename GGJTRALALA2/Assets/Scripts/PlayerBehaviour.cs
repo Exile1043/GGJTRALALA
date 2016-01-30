@@ -33,4 +33,9 @@ public class PlayerBehaviour : MonoBehaviour {
         canAct = !canAct;
         return canAct;
     }
+
+    public GameManager.Player ReturnPlayer()
+    {
+        return thisPlayer;
+    }
 }

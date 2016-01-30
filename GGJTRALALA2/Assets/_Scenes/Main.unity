@@ -176,6 +176,26 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 148804, guid: 4455fb091c35d544d914e2ac44126e9c, type: 2}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11499056, guid: 4455fb091c35d544d914e2ac44126e9c, type: 2}
+      propertyPath: player1
+      value: 
+      objectReference: {fileID: 1713088607}
+    - target: {fileID: 11499056, guid: 4455fb091c35d544d914e2ac44126e9c, type: 2}
+      propertyPath: player2
+      value: 
+      objectReference: {fileID: 1777589003}
+    - target: {fileID: 11494036, guid: 4455fb091c35d544d914e2ac44126e9c, type: 2}
+      propertyPath: columns
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11494036, guid: 4455fb091c35d544d914e2ac44126e9c, type: 2}
+      propertyPath: rows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11494036, guid: 4455fb091c35d544d914e2ac44126e9c, type: 2}
+      propertyPath: gems
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -747,6 +767,18 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc34de29d02e5264f88453c0eca61a03, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1713088607 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11458184, guid: 622d15ddec8cd974a96388d2e6824870,
+    type: 2}
+  m_PrefabInternal: {fileID: 1235584034}
+  m_Script: {fileID: 11500000, guid: 1609b57e561a20a4dab867b83d03d3b3, type: 3}
+--- !u!114 &1777589003 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11439404, guid: 0b26875db5cd26d43ab9e4290097975f,
+    type: 2}
+  m_PrefabInternal: {fileID: 48503971}
+  m_Script: {fileID: 11500000, guid: 9ec4ae4d2c215f349a257102d6c1a9a2, type: 3}
 --- !u!1 &2023332330
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,7 +4,7 @@ using System.Collections;
 public class PlayerMovementGrid : PlayerBehaviour
 {
 
-    Vector3 pos;
+    public Vector3 pos, startingPos;
     public float speed;
     CreateGameboard gameboard;
     GameManager gamemanager;
@@ -17,6 +17,7 @@ public class PlayerMovementGrid : PlayerBehaviour
 
         gameboard = GameObject.Find("Gameboard").GetComponent<CreateGameboard>();
         pos = transform.position;
+        startingPos = transform.position;
         //Debug.Log(gameboard.GetTilePosition(new Vector2(5,5))[0]);
         gamemanager = GameManager.instance;
         usedAction = false;
