@@ -12,7 +12,7 @@ public class PlayerMovementGrid : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void FixedUpdate () {
+	void Update () {
 	    if(Input.GetKeyDown(KeyCode.A) && transform.position == pos)
         {
             pos += Vector3.left;
@@ -31,5 +31,6 @@ public class PlayerMovementGrid : MonoBehaviour {
         }
 
         transform.position = Vector3.MoveTowards(transform.position, pos, Time.deltaTime * speed);
+        
     }
 }
