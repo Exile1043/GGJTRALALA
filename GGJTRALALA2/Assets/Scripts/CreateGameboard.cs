@@ -4,7 +4,7 @@ using System.Collections;
 public class CreateGameboard : MonoBehaviour {
     public GameObject[] tiles;
     public int gridSize;
-    float tileSize = 0;
+    public float tileSize = 0;
 
     GameObject[][] gameBoardGrid;
 
@@ -16,8 +16,7 @@ public class CreateGameboard : MonoBehaviour {
         tileSize = tiles[0].GetComponent<Renderer>().bounds.size.x;
         Create();
         GetGrid();
-        //example shift - deactivated for now. ~Q
-        //ShiftTiles(new Vector2(0, 0) , 2);
+        
     }
 	
 	// Update is called once per frame
@@ -119,11 +118,22 @@ public class CreateGameboard : MonoBehaviour {
         }
     }
 
-   public int[] GetTilePosition(Vector2 position)
+    public int[] GetTilePosition(Vector2 position)
     {
         int[] tileCoord = { 0, 0 };
-        tileCoord[0] = (int)((position.x / tileSize) + (int)gridSize / 2);
-        tileCoord[1] = (int)((position.y / tileSize) + (int)gridSize / 2);
+        tileCoord[0] = (int)(Mathf.Round(position.x / tileSize) + (int)gridSize / 2);
+        tileCoord[1] = (int)(Mathf.Round(position.y / tileSize) + (int)gridSize / 2);
         return tileCoord;
+    }
+
+    public GameObject GetTileGameObject(Vector2 position)
+    {
+        try {
+            return gameBoardGrid[GetTilePosition(position)[0]][GetTilePosition(position)[1]];
+        }
+        catch
+        {
+            return null;
+        }
     }
 }
