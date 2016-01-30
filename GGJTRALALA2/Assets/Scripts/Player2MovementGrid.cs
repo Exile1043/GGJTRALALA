@@ -29,11 +29,9 @@ public class Player2MovementGrid : PlayerBehaviour
     {
         if (!canAct)
             return;
-<<<<<<< HEAD
 
         Debug.Log("Player2 Movement Update Active");
 
-=======
         if (Input.GetKeyDown(KeyCode.RightShift) || shifting == true)
         {
             Debug.Log(shifting);
@@ -65,7 +63,6 @@ public class Player2MovementGrid : PlayerBehaviour
             return;
         }
         
->>>>>>> origin/feature/Shifting
         if (Input.GetKeyDown(KeyCode.LeftArrow) && transform.position == pos && gameboard.GetTileGameObject(transform.position + new Vector3(-gameboard.tileSize, 0)) != null)
         {
             if (gameboard.GetTileGameObject((Vector2)transform.position + new Vector2(-gameboard.tileSize, 0)).tag == "Tile")

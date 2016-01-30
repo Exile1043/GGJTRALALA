@@ -29,10 +29,8 @@ public class PlayerMovementGrid : PlayerBehaviour
     {
         if (!canAct)
             return;
-<<<<<<< HEAD
 
         Debug.Log("Player1 Movement Update Active");
-=======
         if (Input.GetKeyDown(KeyCode.Space) || shifting == true)
         {
             Debug.Log(shifting);
@@ -63,7 +61,6 @@ public class PlayerMovementGrid : PlayerBehaviour
             }
             return;
         }
->>>>>>> origin/feature/Shifting
 
         if (Input.GetKeyDown(KeyCode.A) && transform.position == pos && gameboard.GetTileGameObject(transform.position + new Vector3(-gameboard.tileSize, 0)) != null)
         {
@@ -74,12 +71,7 @@ public class PlayerMovementGrid : PlayerBehaviour
                 usedAction = true;
             }
         }
-<<<<<<< HEAD
-
-        if (Input.GetKeyDown(KeyCode.D) && transform.position == pos && gameboard.GetTileGameObject(transform.position + new Vector3(gameboard.tileSize, 0)) != null)
-=======
         else if (Input.GetKeyDown(KeyCode.D) && transform.position == pos && gameboard.GetTileGameObject(transform.position + new Vector3(gameboard.tileSize, 0)) != null)
->>>>>>> origin/feature/Shifting
         {
             if (gameboard.GetTileGameObject((Vector2)transform.position + new Vector2(gameboard.tileSize, 0)).tag == "Tile")
             {
