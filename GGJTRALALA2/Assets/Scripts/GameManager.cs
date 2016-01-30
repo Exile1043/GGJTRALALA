@@ -7,14 +7,27 @@ namespace Completed
 
     public class GameManager : MonoBehaviour
     {
+        public enum Player { Player1, Player2 };
+        [SerializeField]
+        private Player currentPlayer;
+        [SerializeField]
+        private float shotCounterTotal;
+        private float shotCounterCurrent;
+        private bool gamePaused = false;
+        private float xPosition;
 
         public static GameManager instance = null;              //Static instance of GameManager which allows it to be accessed by any other script.
-        private RandomGem randomGemScript;                       //Store a reference to our BoardManager which will set up the level.
+        private RandomGem randomGemScript;                      //Store a reference to our BoardManager which will set up the level.
         private int level = 3;                                  //Current level number, expressed in game as "Day 1".
 
         //Awake is always called before any Start functions
         void Awake()
         {
+            //initializes the shot counter variables and position
+            shotCounterCurrent = shotCounterTotal;
+            currentPlayer = Player.Player1;
+            xPosition = 10;
+
             //Check if instance already exists
             if (instance == null)
 
@@ -51,6 +64,46 @@ namespace Completed
         void Update()
         {
 
+        }
+
+        //FixedUpdate used to keep the time
+        void FixedUpdate()
+        {
+            if (!gamePaused)
+            {
+                if (shotCounterCurrent > 0.0f)
+                {
+                    shotCounterCurrent = shotCounterCurrent - 1.0f * Time.fixedDeltaTime;
+                }
+
+                if (shotCounterCurrent <= 0.0f)
+                {
+                    Debug.Log("Counter done.");
+                    SwitchPlayer();
+                    shotCounterCurrent = shotCounterTotal;
+                }
+            }
+        }
+
+        private void SwitchPlayer()
+        {
+            if (currentPlayer == Player.Player1)
+            {
+                currentPlayer = Player.Player2;
+                xPosition = 680;
+            }
+            else
+            {
+                currentPlayer = Player.Player1;
+                xPosition = 10;
+            }
+            Debug.Log("Player is now: " + currentPlayer);
+        }
+
+
+        void OnGUI()
+        {
+            GUI.Label(new Rect(xPosition, 10, 20, 20), Mathf.CeilToInt(shotCounterCurrent).ToString());
         }
     }
 }

@@ -85,6 +85,27 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &177287212 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 148804, guid: 4455fb091c35d544d914e2ac44126e9c, type: 2}
+  m_PrefabInternal: {fileID: 824511296}
+--- !u!114 &177287213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 177287212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c8318a82abeba1489673411803702e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  columns: 0
+  rows: 0
+  gems: 0
+  floor: {fileID: 0}
+  gem: {fileID: 131310, guid: 848bec838d89c1a468ef9c68555ecd55, type: 2}
+  gemTiles: []
 --- !u!1001 &824511296
 Prefab:
   m_ObjectHideFlags: 0
@@ -126,9 +147,14 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 148804, guid: 4455fb091c35d544d914e2ac44126e9c, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 11499056, guid: 4455fb091c35d544d914e2ac44126e9c, type: 2}
+      propertyPath: shotCounterTotal
+      value: 10
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 11494036, guid: 4455fb091c35d544d914e2ac44126e9c, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 4455fb091c35d544d914e2ac44126e9c, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1392609356
