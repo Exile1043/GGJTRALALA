@@ -5,7 +5,7 @@ public class PlayerBehaviour : MonoBehaviour {
 
     [SerializeField]
     private GameManager.Player thisPlayer;
-    private bool canAct;
+    protected bool canAct;
 
 	// Use this for initialization
 	void Start () {
