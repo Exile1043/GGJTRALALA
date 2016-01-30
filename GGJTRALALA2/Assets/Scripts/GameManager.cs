@@ -17,8 +17,11 @@ using System.Collections.Generic;       //Allows us to use Lists.
         private RandomGem randomGemScript;                      //Store a reference to our BoardManager which will set up the level.
         private int level = 3;                                  //Current level number, expressed in game as "Day 1".
 
-        //Awake is always called before any Start functions
-        void Awake()
+        public PlayerBehaviour player1;
+        public PlayerBehaviour player2;
+
+    //Awake is always called before any Start functions
+    void Awake()
         {
             //initializes the shot counter variables and position
             shotCounterCurrent = shotCounterTotal;
@@ -28,14 +31,14 @@ using System.Collections.Generic;       //Allows us to use Lists.
             //Check if instance already exists
             if (instance == null)
 
-                //if not, set instance to this
-                instance = this;
+            //if not, set instance to this
+            instance = this;
 
             //If instance already exists and it's not this:
             else if (instance != this)
 
-                //Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of a GameManager.
-                Destroy(gameObject);
+            //Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of a GameManager.
+            Destroy(gameObject);
 
             //Sets this to not be destroyed when reloading scene
             DontDestroyOnLoad(gameObject);
@@ -87,11 +90,13 @@ using System.Collections.Generic;       //Allows us to use Lists.
             if (currentPlayer == Player.Player1)
             {
                 currentPlayer = Player.Player2;
+                player2.toggleCanAct();
                 xPosition = 680;
             }
             else
             {
                 currentPlayer = Player.Player1;
+                player1.toggleCanAct();
                 xPosition = 10;
             }
             Debug.Log("Player is now: " + currentPlayer);
