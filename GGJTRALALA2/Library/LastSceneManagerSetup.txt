@@ -1,8 +1,4 @@
 sceneSetups:
-<<<<<<< HEAD
-- path: Assets/_Scenes/Turn Logic.unity
-=======
-- path: Assets/_Scenes/IngameMockup.unity
->>>>>>> origin/Ingame_mockup_art
+- path: Assets/_Scenes/Main.unity
   isLoaded: 1
   isActive: 1
