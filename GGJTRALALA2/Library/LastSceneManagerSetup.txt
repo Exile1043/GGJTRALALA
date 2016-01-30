@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/_Scenes/Main.unity
+=======
+- path: Assets/_Scenes/GameOver.unity
+>>>>>>> Score_GUI
   isLoaded: 1
   isActive: 1
