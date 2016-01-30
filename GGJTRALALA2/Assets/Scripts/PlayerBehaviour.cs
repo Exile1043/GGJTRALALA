@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PlayerBehaviour : MonoBehaviour {
 
+    [SerializeField]
     private GameManager.Player thisPlayer;
     private bool canAct;
 
@@ -16,4 +17,10 @@ public class PlayerBehaviour : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    public bool toggleCanAct()
+    {
+        canAct = !canAct;
+        return canAct;
+    }
 }
