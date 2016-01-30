@@ -90,13 +90,15 @@ public class GameManager : MonoBehaviour
         if (currentPlayer == Player.Player1)
         {
             currentPlayer = Player.Player2;
-            player2.toggleCanAct();
+            Debug.Log("Player2 can act: " + player2.toggleCanAct(true));
+            player1.toggleCanAct();
             xPosition = 680;
         }
-        else
+        else if (currentPlayer == Player.Player2)
         {
             currentPlayer = Player.Player1;
-            player1.toggleCanAct();
+            Debug.Log("Player1 can act: " + player1.toggleCanAct(true));
+            player2.toggleCanAct();
             xPosition = 10;
         }
         Debug.Log("Player is now: " + currentPlayer);

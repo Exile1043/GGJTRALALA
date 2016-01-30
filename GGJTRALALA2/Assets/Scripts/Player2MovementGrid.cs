@@ -13,6 +13,8 @@ public class Player2MovementGrid : PlayerBehaviour
     // Use this for initialization
     void Start()
     {
+        base.Start();
+
         gameboard = GameObject.Find("Gameboard").GetComponent<CreateGameboard>();
         pos = transform.position;
         //Debug.Log(gameboard.GetTilePosition(new Vector2(5,5))[0]);
@@ -67,7 +69,8 @@ public class Player2MovementGrid : PlayerBehaviour
 
         if (usedAction)
         {
-            transform.position = Vector3.MoveTowards(transform.position, pos, Time.deltaTime * speed);
+            //transform.position = Vector3.MoveTowards(transform.position, pos, Time.deltaTime * speed);
+            transform.position = pos;
             gamemanager.EndTurn();
             usedAction = false;
         }

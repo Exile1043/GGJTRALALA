@@ -5,12 +5,17 @@ public class PlayerBehaviour : MonoBehaviour {
 
     [SerializeField]
     private GameManager.Player thisPlayer;
-    protected bool canAct;
+    protected bool canAct = false;
 
 	// Use this for initialization
-	void Start () {
+	protected virtual void Start () {
         if (GameManager.instance.ReturnPlayer() == thisPlayer)
+        {
+            Debug.Log("Firstplayer: " + thisPlayer);
             canAct = true;
+        }
+        else
+            Debug.Log(GameManager.instance.ReturnPlayer());
 	}
 	
 	// Update is called once per frame
@@ -18,8 +23,13 @@ public class PlayerBehaviour : MonoBehaviour {
 	
 	}
 
-    public bool toggleCanAct()
+    public bool toggleCanAct(bool setTrue = false)
     {
+        if(setTrue)
+        {
+            canAct = true;
+            return canAct;
+        }
         canAct = !canAct;
         return canAct;
     }
