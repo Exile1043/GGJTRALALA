@@ -1,9 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
-namespace Completed
-{
-    using System.Collections.Generic;       //Allows us to use Lists. 
+using System.Collections.Generic;       //Allows us to use Lists. 
 
     public class GameManager : MonoBehaviour
     {
@@ -105,5 +102,9 @@ namespace Completed
         {
             GUI.Label(new Rect(xPosition, 10, 20, 20), Mathf.CeilToInt(shotCounterCurrent).ToString());
         }
-    }
+
+        public Player ReturnPlayer()
+        {
+            return currentPlayer;
+        }
 }
