@@ -115,7 +115,7 @@ public class GameManager : MonoBehaviour
         GUI.Label(new Rect(15, Screen.height / 2, 250, 250), "<size=20>Player 1 Inventory: " + Mathf.CeilToInt(inventoryP1).ToString() + " / 3</size>");
         GUI.Label(new Rect(15, Screen.height / 2 + 20, 250, 250), "<size=20>Player 1 Score: " + Mathf.CeilToInt(scoreP1).ToString() + " / 3</size>");
         GUI.Label(new Rect(Screen.width - 230, Screen.height / 2, 250, 250), "<size=20>Player 2 Inventory: " + Mathf.CeilToInt(inventoryP2).ToString() + " / 3</size>");
-        GUI.Label(new Rect(Screen.width - 230, Screen.height / 2 + 20, 250, 250), "<size=20>Player 2 Score: " + Mathf.CeilToInt(inventoryP2).ToString() + " / 3</size>");
+        GUI.Label(new Rect(Screen.width - 230, Screen.height / 2 + 20, 250, 250), "<size=20>Player 2 Score: " + Mathf.CeilToInt(scoreP2).ToString() + " / 3</size>");
     }
 
     public Player ReturnPlayer()
