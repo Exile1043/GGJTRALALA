@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 3c9b6f844476363469657a86aa8d45cb
 folderAsset: yes
 timeCreated: 1454118482
+=======
+guid: 94cdf7066b0495c419975aecf4828fe2
+folderAsset: yes
+timeCreated: 1454119845
+>>>>>>> feature/Shot_Counter
 licenseType: Free
 DefaultImporter:
   userData: 
