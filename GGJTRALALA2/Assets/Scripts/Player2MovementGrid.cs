@@ -9,6 +9,7 @@ public class Player2MovementGrid : PlayerBehaviour
     CreateGameboard gameboard;
     GameManager gamemanager;
     bool usedAction;
+    bool shifting;
 
     // Use this for initialization
     void Start()
@@ -20,6 +21,7 @@ public class Player2MovementGrid : PlayerBehaviour
         //Debug.Log(gameboard.GetTilePosition(new Vector2(5,5))[0]);
         gamemanager = GameManager.instance;
         usedAction = false;
+        shifting = false;
     }
 
     // Update is called once per frame
@@ -27,7 +29,37 @@ public class Player2MovementGrid : PlayerBehaviour
     {
         if (!canAct)
             return;
-        Debug.Log("test");
+        if (Input.GetKeyDown(KeyCode.RightShift) || shifting == true)
+        {
+            Debug.Log(shifting);
+            shifting = true;
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                gameboard.ShiftTiles(transform.position, 0);
+                usedAction = true;
+                shifting = false;
+            }
+            else if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                gameboard.ShiftTiles(transform.position, 1);
+                usedAction = true;
+                shifting = false;
+            }
+            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                gameboard.ShiftTiles(transform.position, 2);
+                usedAction = true;
+                shifting = false;
+            }
+            else if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                gameboard.ShiftTiles(transform.position, 3);
+                usedAction = true;
+                shifting = false;
+            }
+            return;
+        }
+        
         if (Input.GetKeyDown(KeyCode.LeftArrow) && transform.position == pos && gameboard.GetTileGameObject(transform.position + new Vector3(-gameboard.tileSize, 0)) != null)
         {
             if (gameboard.GetTileGameObject((Vector2)transform.position + new Vector2(-gameboard.tileSize, 0)).tag == "Tile")
@@ -39,8 +71,6 @@ public class Player2MovementGrid : PlayerBehaviour
         }
         if (Input.GetKeyDown(KeyCode.RightArrow) && transform.position == pos && gameboard.GetTileGameObject(transform.position + new Vector3(gameboard.tileSize, 0)) != null)
         {
-
-            Debug.Log("right");
             if (gameboard.GetTileGameObject((Vector2)transform.position + new Vector2(gameboard.tileSize, 0)).tag == "Tile")
             {
                 pos += new Vector3(gameboard.tileSize, 0);
