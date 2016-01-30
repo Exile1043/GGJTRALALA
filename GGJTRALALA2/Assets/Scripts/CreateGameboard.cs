@@ -16,8 +16,8 @@ public class CreateGameboard : MonoBehaviour {
         tileSize = tiles[0].GetComponent<Renderer>().bounds.size.x;
         Create();
         GetGrid();
-        //example shift
-        ShiftTiles(new Vector2(0, 0) , 2);
+        //example shift - deactivated for now. ~Q
+        //ShiftTiles(new Vector2(0, 0) , 2);
     }
 	
 	// Update is called once per frame
