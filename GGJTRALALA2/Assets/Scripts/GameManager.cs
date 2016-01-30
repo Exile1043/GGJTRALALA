@@ -119,6 +119,5 @@ public class GameManager : MonoBehaviour
     {
         SwitchPlayer();
         shotCounterCurrent = shotCounterTotal;
-
     }
 }

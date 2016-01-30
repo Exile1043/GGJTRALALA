@@ -40,9 +40,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c8318a82abeba1489673411803702e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  columns: 7
-  rows: 7
-  gems: 26
+  columns: 0
+  rows: 0
+  gems: 0
   floor: {fileID: 179870, guid: 5ee1022dbd0cb5248addb498d0aaa3b4, type: 2}
   gem: {fileID: 131310, guid: 848bec838d89c1a468ef9c68555ecd55, type: 2}
   gemTiles: []
@@ -57,6 +57,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4ab4cf5987196946979ce7b4bb8bca5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentPlayer: 0
+  shotCounterTotal: 10
+  player1: {fileID: 0}
+  player2: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

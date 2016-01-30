@@ -27,7 +27,9 @@ public class PlayerMovementGrid : PlayerBehaviour
     {
         if (!canAct)
             return;
-        Debug.Log("test");
+
+        Debug.Log("Player1 Movement Update Active");
+
         if (Input.GetKeyDown(KeyCode.A) && transform.position == pos && gameboard.GetTileGameObject(transform.position + new Vector3(-gameboard.tileSize, 0)) != null)
         {
             if (gameboard.GetTileGameObject((Vector2)transform.position + new Vector2(-gameboard.tileSize, 0)).tag == "Tile")
@@ -37,6 +39,7 @@ public class PlayerMovementGrid : PlayerBehaviour
                 usedAction = true;
             }
         }
+
         if (Input.GetKeyDown(KeyCode.D) && transform.position == pos && gameboard.GetTileGameObject(transform.position + new Vector3(gameboard.tileSize, 0)) != null)
         {
 
@@ -70,6 +73,8 @@ public class PlayerMovementGrid : PlayerBehaviour
         if (usedAction)
         {
             //transform.position = Vector3.MoveTowards(transform.position, pos, Time.deltaTime * speed);
+
+            playWalkSound();
             transform.position = pos;
             gamemanager.EndTurn();
             usedAction = false;

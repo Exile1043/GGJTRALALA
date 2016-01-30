@@ -27,7 +27,9 @@ public class Player2MovementGrid : PlayerBehaviour
     {
         if (!canAct)
             return;
-        Debug.Log("test");
+
+        Debug.Log("Player2 Movement Update Active");
+
         if (Input.GetKeyDown(KeyCode.LeftArrow) && transform.position == pos && gameboard.GetTileGameObject(transform.position + new Vector3(-gameboard.tileSize, 0)) != null)
         {
             if (gameboard.GetTileGameObject((Vector2)transform.position + new Vector2(-gameboard.tileSize, 0)).tag == "Tile")
@@ -70,6 +72,8 @@ public class Player2MovementGrid : PlayerBehaviour
         if (usedAction)
         {
             //transform.position = Vector3.MoveTowards(transform.position, pos, Time.deltaTime * speed);
+
+            playWalkSound();
             transform.position = pos;
             gamemanager.EndTurn();
             usedAction = false;

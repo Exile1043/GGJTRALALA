@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 using System.Collections;
 
 public class PlayerBehaviour : MonoBehaviour {
@@ -7,7 +8,13 @@ public class PlayerBehaviour : MonoBehaviour {
     private GameManager.Player thisPlayer;
     protected bool canAct = false;
 
-	// Use this for initialization
+    public List<AudioClip> WalkSoundList;
+
+    void Awake()
+    {
+        
+    }
+
 	protected virtual void Start () {
         if (GameManager.instance.ReturnPlayer() == thisPlayer)
         {
@@ -32,5 +39,11 @@ public class PlayerBehaviour : MonoBehaviour {
         }
         canAct = !canAct;
         return canAct;
+    }
+
+    public void playWalkSound()
+    {
+        int ranNum = Mathf.FloorToInt(Random.Range(1, 4));
+        AudioSource.PlayClipAtPoint(WalkSoundList[ranNum], transform.position);
     }
 }
