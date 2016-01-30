@@ -9,6 +9,7 @@ public class PlayerMovementGrid : PlayerBehaviour
     CreateGameboard gameboard;
     GameManager gamemanager;
     bool usedAction;
+    bool shifting;
 
     // Use this for initialization
     void Start()
@@ -20,6 +21,7 @@ public class PlayerMovementGrid : PlayerBehaviour
         //Debug.Log(gameboard.GetTilePosition(new Vector2(5,5))[0]);
         gamemanager = GameManager.instance;
         usedAction = false;
+        shifting = false;
     }
 
     // Update is called once per frame
@@ -27,8 +29,41 @@ public class PlayerMovementGrid : PlayerBehaviour
     {
         if (!canAct)
             return;
+<<<<<<< HEAD
 
         Debug.Log("Player1 Movement Update Active");
+=======
+        if (Input.GetKeyDown(KeyCode.Space) || shifting == true)
+        {
+            Debug.Log(shifting);
+            shifting = true;
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                gameboard.ShiftTiles(transform.position, 0);
+                usedAction = true;
+                shifting = false;
+            }
+            else if (Input.GetKeyDown(KeyCode.A))
+            {
+                gameboard.ShiftTiles(transform.position, 1);
+                usedAction = true;
+                shifting = false;
+            }
+            else if (Input.GetKeyDown(KeyCode.D))
+            {
+                gameboard.ShiftTiles(transform.position, 2);
+                usedAction = true;
+                shifting = false;
+            }
+            else if (Input.GetKeyDown(KeyCode.S))
+            {
+                gameboard.ShiftTiles(transform.position, 3);
+                usedAction = true;
+                shifting = false;
+            }
+            return;
+        }
+>>>>>>> origin/feature/Shifting
 
         if (Input.GetKeyDown(KeyCode.A) && transform.position == pos && gameboard.GetTileGameObject(transform.position + new Vector3(-gameboard.tileSize, 0)) != null)
         {
@@ -39,11 +74,13 @@ public class PlayerMovementGrid : PlayerBehaviour
                 usedAction = true;
             }
         }
+<<<<<<< HEAD
 
         if (Input.GetKeyDown(KeyCode.D) && transform.position == pos && gameboard.GetTileGameObject(transform.position + new Vector3(gameboard.tileSize, 0)) != null)
+=======
+        else if (Input.GetKeyDown(KeyCode.D) && transform.position == pos && gameboard.GetTileGameObject(transform.position + new Vector3(gameboard.tileSize, 0)) != null)
+>>>>>>> origin/feature/Shifting
         {
-
-            Debug.Log("right");
             if (gameboard.GetTileGameObject((Vector2)transform.position + new Vector2(gameboard.tileSize, 0)).tag == "Tile")
             {
                 pos += new Vector3(gameboard.tileSize, 0);
@@ -51,7 +88,7 @@ public class PlayerMovementGrid : PlayerBehaviour
                 usedAction = true;
             }
         }
-        if (Input.GetKeyDown(KeyCode.W) && transform.position == pos && gameboard.GetTileGameObject(transform.position + new Vector3(0, gameboard.tileSize)) != null)
+        else if (Input.GetKeyDown(KeyCode.W) && transform.position == pos && gameboard.GetTileGameObject(transform.position + new Vector3(0, gameboard.tileSize)) != null)
         {
             if (gameboard.GetTileGameObject((Vector2)transform.position + new Vector2(0, gameboard.tileSize)).tag == "Tile")
             {
@@ -60,7 +97,7 @@ public class PlayerMovementGrid : PlayerBehaviour
                 usedAction = true;
             }
         }
-        if (Input.GetKeyDown(KeyCode.S) && transform.position == pos && gameboard.GetTileGameObject(transform.position + new Vector3(0, -gameboard.tileSize)) != null)
+        else if (Input.GetKeyDown(KeyCode.S) && transform.position == pos && gameboard.GetTileGameObject(transform.position + new Vector3(0, -gameboard.tileSize)) != null)
         {
             if (gameboard.GetTileGameObject((Vector2)transform.position + new Vector2(0, -gameboard.tileSize)).tag == "Tile")
             {
