@@ -91,23 +91,23 @@ public class PlayerBehaviour : MonoBehaviour {
         switch (newRule)
         {
             case "\n arrow":
-                currentTileContents.SetRule(new Direction());
+                currentTileContents.SetRule(new Direction(), "Direction");
                 Debug.Log("Direction added to tile");
                 break;
             case "\n onlyBlue":
-                currentTileContents.SetRule(new OnlyBlue());
+                currentTileContents.SetRule(new OnlyBlue(), "OnlyBlue");
                 Debug.Log("Only Blue added to tile");
                 break;
             case "\n onlyGreen":
-                currentTileContents.SetRule(new OnlyGreen());
+                currentTileContents.SetRule(new OnlyGreen(), "OnlyGreen");
                 Debug.Log("Only Green added to tile");
                 break;
             case "\n withImpl":
-                currentTileContents.SetRule(new OnlyImplement());
+                currentTileContents.SetRule(new OnlyImplement(), "OnlyImplement");
                 Debug.Log("Only Implement added to tile");
                 break;
             case "\n withoutImp":
-                currentTileContents.SetRule(new NoImplement());
+                currentTileContents.SetRule(new NoImplement(), "NoImplement");
                 Debug.Log("No Implement added to tile");
                 break;
             default:
