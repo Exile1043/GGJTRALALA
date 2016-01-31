@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Player currentPlayer;
     [SerializeField]
-    private float shotCounterTotal;
+    private float shotCounterTotal = 10.0f;
     private float shotCounterCurrent;
     private bool gamePaused = false;
     private float xPosition;
@@ -22,6 +22,11 @@ public class GameManager : MonoBehaviour
     public int inventoryP2Max = 3;
     public int scoreP1 = 0;
     public int scoreP2 = 0;
+
+    public string[] tileRuleQueue = { "\n onlyBlue", "\n onlyGreen", "\n arrow", "\n withImpl", "\n withoutImp" };
+    private string currentRule = " ";
+
+    public int counterReturn = 0;
 
     public PlayerBehaviour player1;
     public PlayerBehaviour player2;
@@ -37,14 +42,14 @@ public class GameManager : MonoBehaviour
         //Check if instance already exists
         if (instance == null)
 
-        //if not, set instance to this
-        instance = this;
+            //if not, set instance to this
+            instance = this;
 
         //If instance already exists and it's not this:
         else if (instance != this)
 
-        //Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of a GameManager.
-        Destroy(gameObject);
+            //Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of a GameManager.
+            Destroy(gameObject);
 
         //Sets this to not be destroyed when reloading scene
         DontDestroyOnLoad(gameObject);
@@ -60,8 +65,10 @@ public class GameManager : MonoBehaviour
     void InitGame()
     {
         //Call the SetupScene function of the BoardManager script, pass it current level number.
-        randomGemScript.SetupScene(level);
+        //randomGemScript.SetupScene(level);
 
+        //Call the shuffleQueue method to shuffle the tilerule list.
+        shuffleQueue();
     }
 
 
@@ -110,39 +117,68 @@ public class GameManager : MonoBehaviour
         Debug.Log("Player is now: " + currentPlayer);
     }
 
-    public void AddGem(bool score)
+    public void shuffleQueue()
     {
-        // if parameter score is not true, add gem to inventory
-        if (!score)
+        // Knuth algorithm, http://algs4.cs.princeton.edu/11model/Knuth.java.html
+        for (int t = 0; t < tileRuleQueue.Length; t++)
         {
-            if(currentPlayer == Player.Player1 && inventoryP1 < 3)
-            {
-                ++inventoryP1;
-            } else if (currentPlayer == Player.Player2 && inventoryP2 < 3)
-            {
-                ++inventoryP2;
-            }
-        // if true add gem to score
-        } else if (score)
+            string tmp = tileRuleQueue[t];
+            int r = Random.Range(t, tileRuleQueue.Length);
+            tileRuleQueue[t] = tileRuleQueue[r];
+            tileRuleQueue[r] = tmp;
+        }
+    }
+
+    public string ReturnTileRule()
+    {
+        if (counterReturn == 0)
         {
-            if (currentPlayer == Player.Player1 && scoreP1 < 3)
-            {
-                scoreP1 += inventoryP1;
-                inventoryP1Max -= inventoryP1;
-                inventoryP1 = 0;
-            }
-            else if (currentPlayer == Player.Player2 && scoreP2 < 3)
-            {
-                scoreP2 += inventoryP2;
-                inventoryP2Max -= inventoryP2;
-                inventoryP2 = 0;
-            }
+            counterReturn++;
+            currentRule = tileRuleQueue[0];
+            return currentRule;
+        } else if(counterReturn == 1)
+        {
+            counterReturn++;
+            currentRule = tileRuleQueue[1];
+            return currentRule;
+        }
+        else if (counterReturn == 2)
+        {
+            counterReturn++;
+            currentRule = tileRuleQueue[2];
+            return currentRule;
+        }
+        else if (counterReturn == 3)
+        {
+            counterReturn++;
+            currentRule = tileRuleQueue[3];
+            return currentRule;
+        }
+        else if (counterReturn == 4)
+        {
+            currentRule = tileRuleQueue[4];
+            counterReturn = 0;
+            shuffleQueue();
+            return currentRule;
+        } else
+        {
+            return null;
         }
     }
 
     void OnGUI()
     {
         GUI.Label(new Rect(xPosition, 10, 200, 200), "<size=30>" + Mathf.CeilToInt(shotCounterCurrent).ToString() + "</size>");
+        GUI.Label(new Rect(15, Screen.height / 2, 250, 250), "<size=20>Player 1 Inventory: " + Mathf.CeilToInt(inventoryP1).ToString() + " / 3</size>");
+        GUI.Label(new Rect(15, Screen.height / 2 + 20, 250, 250), "<size=20>Player 1 Score: " + Mathf.CeilToInt(scoreP1).ToString() + " / 3</size>");
+        GUI.Label(new Rect(Screen.width - 230, Screen.height / 2, 250, 250), "<size=20>Player 2 Inventory: " + Mathf.CeilToInt(inventoryP2).ToString() + " / 3</size>");
+        GUI.Label(new Rect(Screen.width - 230, Screen.height / 2 + 20, 250, 250), "<size=20>Player 2 Score: " + Mathf.CeilToInt(scoreP2).ToString() + " / 3</size>");
+
+
+        for (int i = 0; i < tileRuleQueue.Length; i++)
+        {
+            GUI.Label(new Rect(Screen.width - 230, (10 * i), 250, 250), tileRuleQueue[i]);
+        }
         GUI.Label(new Rect(15, Screen.height / 2, 250, 250), "<size=20>Player 1 Inventory: " + inventoryP1.ToString() + " / " + inventoryP1Max.ToString() +" </size>");
         GUI.Label(new Rect(15, Screen.height / 2 + 20, 250, 250), "<size=20>Player 1 Score: " + scoreP1.ToString() + " / 3</size>");
         GUI.Label(new Rect(Screen.width - 230, Screen.height / 2, 250, 250), "<size=20>Player 2 Inventory: " + inventoryP2.ToString() + " / " + inventoryP2Max.ToString() + " </size>");
@@ -153,7 +189,7 @@ public class GameManager : MonoBehaviour
     {
         return currentPlayer;
     }
-        
+
     public void EndTurn()
     {
         SwitchPlayer();
