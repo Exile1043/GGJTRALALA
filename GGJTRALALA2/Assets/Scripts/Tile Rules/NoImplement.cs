@@ -3,18 +3,18 @@ using System.Collections;
 
 public class NoImplement : TileRule {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
-    public override void ApplyRule(GameManager.Player targetPlayer)
+    public override void ApplyRule(PlayerBehaviour targetPlayer)
     {
-        Debug.Log("NoImplement");
+        if (targetPlayer.ReturnPlayer() == GameManager.Player.Player1)
+        {
+            if (GameManager.instance.inventoryP1 > 0)
+                GameManager.instance.removeGem(targetPlayer);
+        }
+        else if (targetPlayer.ReturnPlayer() == GameManager.Player.Player2)
+        {
+            if (GameManager.instance.inventoryP2 > 0)
+                GameManager.instance.removeGem(targetPlayer);
+        }
+        Debug.Log("Only Implement");
     }
 }

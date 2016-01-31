@@ -13,7 +13,7 @@ public class TileRule {
 	
 	}
 
-    public virtual void ApplyRule(GameManager.Player targetPlayer)
+    public virtual void ApplyRule(PlayerBehaviour targetPlayer)
     {
 
     }

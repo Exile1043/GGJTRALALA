@@ -3,18 +3,9 @@ using System.Collections;
 
 public class Direction : TileRule {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
-    public override void ApplyRule(GameManager.Player targetPlayer)
+    public void ApplyRule(PlayerBehaviour targetPlayer, KeyCode buttonPressed)
     {
+
         Debug.Log("Direction");
     }
 }

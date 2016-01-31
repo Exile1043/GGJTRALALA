@@ -131,7 +131,20 @@ public class PlayerBehaviour : MonoBehaviour {
     {
         getTileContentsScript();
         if (currentTileContents.ReturnRule() != null)
-            currentTileContents.ReturnRule().ApplyRule(thisPlayer);
+        {
+            currentTileContents.ReturnRule().ApplyRule(this);
+            currentTileContents.ClearRule();
+        }
+    }
+
+    protected void CheckTileRuleOnExit()
+    {
+        getTileContentsScript();
+        if (currentTileContents.ReturnRule() != null)
+        {
+            currentTileContents.ReturnRule().ApplyRule(this);
+            currentTileContents.ClearRule();
+        }
     }
 
     private void getTileContentsScript()

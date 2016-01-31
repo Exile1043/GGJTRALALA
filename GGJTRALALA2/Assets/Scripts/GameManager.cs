@@ -143,13 +143,13 @@ public class GameManager : MonoBehaviour
         }
         Debug.Log("Player is now: " + currentPlayer);
     }
-    public void removeGem(Player targetPlayer)
+    public void removeGem(PlayerBehaviour targetPlayer)
     {
-        if(targetPlayer == Player.Player1)
+        if(targetPlayer.ReturnPlayer() == Player.Player1)
         {
             --inventoryP1;
         }
-        else if(targetPlayer == Player.Player2)
+        else if(targetPlayer.ReturnPlayer() == Player.Player2)
         {
             --inventoryP2;
         }
