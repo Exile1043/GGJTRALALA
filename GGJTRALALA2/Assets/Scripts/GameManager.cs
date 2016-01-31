@@ -108,6 +108,31 @@ public class GameManager : MonoBehaviour
         Debug.Log("Player is now: " + currentPlayer);
     }
 
+    public void AddGem(bool score)
+    {
+        // if parameter score is not true, add gem to inventory
+        if (!score)
+        {
+            if(currentPlayer == Player.Player1 && inventoryP1 < 3)
+            {
+                ++inventoryP1;
+            } else if (currentPlayer == Player.Player2 && inventoryP2 < 3)
+            {
+                ++inventoryP2;
+            }
+        // if true add gem to score
+        } else if (score)
+        {
+            if (currentPlayer == Player.Player1 && scoreP1 < 3)
+            {
+                ++scoreP1;
+            }
+            else if (currentPlayer == Player.Player2 && scoreP2 < 3)
+            {
+                ++scoreP2;
+            }
+        }
+    }
 
     void OnGUI()
     {
