@@ -269,11 +269,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 401738, guid: 0b26875db5cd26d43ab9e4290097975f, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -1.28
+      value: 1.28
       objectReference: {fileID: 0}
     - target: {fileID: 401738, guid: 0b26875db5cd26d43ab9e4290097975f, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1.28
+      value: 2.56
       objectReference: {fileID: 0}
     - target: {fileID: 401738, guid: 0b26875db5cd26d43ab9e4290097975f, type: 2}
       propertyPath: m_LocalPosition.z
@@ -297,15 +297,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 401738, guid: 0b26875db5cd26d43ab9e4290097975f, type: 2}
       propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11439404, guid: 0b26875db5cd26d43ab9e4290097975f, type: 2}
-      propertyPath: speed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 11439404, guid: 0b26875db5cd26d43ab9e4290097975f, type: 2}
-      propertyPath: thisPlayer
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0b26875db5cd26d43ab9e4290097975f, type: 2}
@@ -389,6 +381,22 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 417948, guid: 8bf1ad4e0d9c64f49b63273d7b7a7c46, type: 2}
       propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2059244, guid: 8bf1ad4e0d9c64f49b63273d7b7a7c46, type: 2}
+      propertyPath: m_ClearFlags
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2059244, guid: 8bf1ad4e0d9c64f49b63273d7b7a7c46, type: 2}
+      propertyPath: m_BackGroundColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2059244, guid: 8bf1ad4e0d9c64f49b63273d7b7a7c46, type: 2}
+      propertyPath: m_BackGroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2059244, guid: 8bf1ad4e0d9c64f49b63273d7b7a7c46, type: 2}
+      propertyPath: m_BackGroundColor.b
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

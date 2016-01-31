@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/_Scenes/Conditions.unity
+=======
+- path: Assets/_Scenes/MainMenu.unity
+>>>>>>> origin/develop
   isLoaded: 1
   isActive: 1

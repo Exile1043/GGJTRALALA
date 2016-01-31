@@ -16,6 +16,10 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;              //Static instance of GameManager which allows it to be accessed by any other script.
     private RandomGem randomGemScript;                      //Store a reference to our BoardManager which will set up the level.
     private int level = 3;                                  //Current level number, expressed in game as "Day 1".
+    public int inventoryP1 = 0;
+    public int inventoryP2 = 0;
+    public int scoreP1 = 0;
+    public int scoreP2 = 0;
 
     public PlayerBehaviour player1;
     public PlayerBehaviour player2;
@@ -92,14 +96,14 @@ public class GameManager : MonoBehaviour
             currentPlayer = Player.Player2;
             Debug.Log("Player2 can act: " + player2.toggleCanAct(true));
             player1.toggleCanAct();
-            xPosition = 680;
+            xPosition = Screen.width - 40;
         }
         else if (currentPlayer == Player.Player2)
         {
             currentPlayer = Player.Player1;
             Debug.Log("Player1 can act: " + player1.toggleCanAct(true));
             player2.toggleCanAct();
-            xPosition = 10;
+            xPosition = 15;
         }
         Debug.Log("Player is now: " + currentPlayer);
     }
@@ -107,7 +111,11 @@ public class GameManager : MonoBehaviour
 
     void OnGUI()
     {
-        GUI.Label(new Rect(xPosition, 10, 20, 20), Mathf.CeilToInt(shotCounterCurrent).ToString());
+        GUI.Label(new Rect(xPosition, 10, 200, 200), "<size=30>" + Mathf.CeilToInt(shotCounterCurrent).ToString() + "</size>");
+        GUI.Label(new Rect(15, Screen.height / 2, 250, 250), "<size=20>Player 1 Inventory: " + Mathf.CeilToInt(inventoryP1).ToString() + " / 3</size>");
+        GUI.Label(new Rect(15, Screen.height / 2 + 20, 250, 250), "<size=20>Player 1 Score: " + Mathf.CeilToInt(scoreP1).ToString() + " / 3</size>");
+        GUI.Label(new Rect(Screen.width - 230, Screen.height / 2, 250, 250), "<size=20>Player 2 Inventory: " + Mathf.CeilToInt(inventoryP2).ToString() + " / 3</size>");
+        GUI.Label(new Rect(Screen.width - 230, Screen.height / 2 + 20, 250, 250), "<size=20>Player 2 Score: " + Mathf.CeilToInt(scoreP2).ToString() + " / 3</size>");
     }
 
     public Player ReturnPlayer()
@@ -119,6 +127,5 @@ public class GameManager : MonoBehaviour
     {
         SwitchPlayer();
         shotCounterCurrent = shotCounterTotal;
-
     }
 }
