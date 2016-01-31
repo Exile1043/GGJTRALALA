@@ -64,6 +64,16 @@ public class PlayerBehaviour : MonoBehaviour {
         return canAct;
     }
 
+    public void paused()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            canAct = false;
+            Time.timeScale = 0f;
+        }
+    }
+
+
     public void playWalkSound()
     {
         int ranNum = Mathf.FloorToInt(Random.Range(1, 4));

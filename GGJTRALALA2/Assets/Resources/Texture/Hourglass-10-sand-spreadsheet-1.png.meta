@@ -1,11 +1,6 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-guid: 9a729ae4b78c2e9419264b4b6b9167f9
-timeCreated: 1454236477
-=======
-guid: 92e08649fdae1904997eead77bff17f7
-timeCreated: 1454229464
->>>>>>> origin/Pause_Game
+guid: c90d92f5bc2f7aa4887762953fbf3841
+timeCreated: 1454229465
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}

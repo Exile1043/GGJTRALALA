@@ -12,6 +12,11 @@ public class GameManager : MonoBehaviour
     private float shotCounterCurrent;
     private bool gamePaused = false;
     private float xPosition;
+    public Canvas InGamePaused;
+
+    private bool paused = false;
+
+    
 
     public static GameManager instance = null;              //Static instance of GameManager which allows it to be accessed by any other script.
     private RandomGem randomGemScript;                      //Store a reference to our BoardManager which will set up the level.
@@ -22,6 +27,7 @@ public class GameManager : MonoBehaviour
     public int inventoryP2Max = 3;
     public int scoreP1 = 0;
     public int scoreP2 = 0;
+    
 
     public string[] tileRuleQueue = { "\n onlyBlue", "\n onlyGreen", "\n arrow", "\n withImpl", "\n withoutImp" };
     private string currentRule = " ";
@@ -30,6 +36,7 @@ public class GameManager : MonoBehaviour
 
     public PlayerBehaviour player1;
     public PlayerBehaviour player2;
+
 
     //Awake is always called before any Start functions
     void Awake()
@@ -59,6 +66,8 @@ public class GameManager : MonoBehaviour
 
         //Call the InitGame function to initialize the first level 
         InitGame();
+
+        
     }
 
     //Initializes the game for each level.
@@ -66,6 +75,7 @@ public class GameManager : MonoBehaviour
     {
         //Call the SetupScene function of the BoardManager script, pass it current level number.
         //randomGemScript.SetupScene(level);
+        InGamePaused.enabled = false;
 
         //Call the shuffleQueue method to shuffle the tilerule list.
         shuffleQueue();
@@ -76,6 +86,23 @@ public class GameManager : MonoBehaviour
     //Update is called every frame.
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            paused =! paused;
+            if (paused)
+            {
+                PausedGame();
+
+                InGamePaused.enabled = true;
+
+
+            }
+            else {
+                PlayGame();
+                InGamePaused.enabled = false;
+            }
+        }
+
 
     }
 
@@ -165,6 +192,23 @@ public class GameManager : MonoBehaviour
             return null;
         }
     }
+    public void PausedGame()
+    {
+        player1.enabled = false;
+        player2.enabled = false;
+        Time.timeScale = 0f;
+
+
+    }
+
+
+    public void PlayGame()
+    {
+        player1.enabled = true;
+        player2.enabled = true;
+        Time.timeScale = 1f;
+    }
+
 
     void OnGUI()
     {
@@ -195,4 +239,5 @@ public class GameManager : MonoBehaviour
         SwitchPlayer();
         shotCounterCurrent = shotCounterTotal;
     }
+
 }

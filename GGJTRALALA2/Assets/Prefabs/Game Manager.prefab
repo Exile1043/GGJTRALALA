@@ -59,6 +59,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentPlayer: 0
   shotCounterTotal: 10
+  InGamePaused: {fileID: 0}
+  inventoryP1: 0
+  inventoryP2: 0
+  scoreP1: 0
+  scoreP2: 0
   player1: {fileID: 0}
   player2: {fileID: 0}
 --- !u!1001 &100100000
