@@ -3,31 +3,6 @@ using System.Collections;
 
 public class Player2MovementGrid : PlayerBehaviour
 {
-    Vector3 pos;
-    public float speed;
-    CreateGameboard gameboard;
-    GameManager gamemanager;
-    GameObject currentTile;
-    public int[] startCoord = { 0, 0 };
-    public int[] currentCoord = { 0, 0 };
-    bool usedAction;
-    bool shifting;
-
-    // Use this for initialization
-    void Start()
-    {
-        base.Start();
-
-        gameboard = GameObject.Find("Gameboard").GetComponent<CreateGameboard>();
-        currentCoord = startCoord;
-        currentTile = gameboard.GetCoordTile(currentCoord[0], currentCoord[1]);
-        transform.parent = currentTile.transform;
-        //Debug.Log(gameboard.GetTilePosition(new Vector2(5,5))[0]);
-        gamemanager = GameManager.instance;
-        usedAction = false;
-        shifting = false;
-    }
-
     // Update is called once per frame
     void Update()
     {

@@ -16,7 +16,7 @@ public class PlayerBehaviour : MonoBehaviour {
     public float speed;
 
     public int[] startCoord = { 0, 0 };
-    protected int[] currentCoord = { 0, 0 };
+    public int[] currentCoord = { 0, 0 };
 
     protected bool canAct = false;
     protected bool usedAction;
