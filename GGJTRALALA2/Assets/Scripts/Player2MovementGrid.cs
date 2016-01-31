@@ -8,6 +8,7 @@ public class Player2MovementGrid : PlayerBehaviour
     public float speed;
     CreateGameboard gameboard;
     GameManager gamemanager;
+    GameObject currentTile;
     bool usedAction;
     bool shifting;
 
@@ -17,16 +18,21 @@ public class Player2MovementGrid : PlayerBehaviour
         base.Start();
 
         gameboard = GameObject.Find("Gameboard").GetComponent<CreateGameboard>();
+        currentTile = gameboard.GetTileGameObject(transform.position);
+        transform.parent = currentTile.transform;
         pos = transform.position;
         //Debug.Log(gameboard.GetTilePosition(new Vector2(5,5))[0]);
         gamemanager = GameManager.instance;
         usedAction = false;
         shifting = false;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        currentTile = gameboard.GetTileGameObject(transform.position);
+        transform.parent = currentTile.transform;
         if (!canAct)
             return;
 
@@ -63,40 +69,48 @@ public class Player2MovementGrid : PlayerBehaviour
             return;
         }
         
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && transform.position == pos && gameboard.GetTileGameObject(transform.position + new Vector3(-gameboard.tileSize, 0)) != null)
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && gameboard.GetTileGameObject(transform.position + new Vector3(-gameboard.tileSize, 0)) != null)
         {
             if (gameboard.GetTileGameObject((Vector2)transform.position + new Vector2(-gameboard.tileSize, 0)).tag == "Tile")
             {
                 pos += new Vector3(-gameboard.tileSize, 0);
                 transform.localEulerAngles = new Vector3(0, 0, 180);
                 usedAction = true;
+                playWalkSound();
+                transform.position = pos;
             }
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow) && transform.position == pos && gameboard.GetTileGameObject(transform.position + new Vector3(gameboard.tileSize, 0)) != null)
+        if (Input.GetKeyDown(KeyCode.RightArrow) && gameboard.GetTileGameObject(transform.position + new Vector3(gameboard.tileSize, 0)) != null)
         {
             if (gameboard.GetTileGameObject((Vector2)transform.position + new Vector2(gameboard.tileSize, 0)).tag == "Tile")
             {
                 pos += new Vector3(gameboard.tileSize, 0);
                 transform.localEulerAngles = new Vector3(0, 0, 0);
                 usedAction = true;
+                playWalkSound();
+                transform.position = pos;
             }
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow) && transform.position == pos && gameboard.GetTileGameObject(transform.position + new Vector3(0, gameboard.tileSize)) != null)
+        if (Input.GetKeyDown(KeyCode.UpArrow) && gameboard.GetTileGameObject(transform.position + new Vector3(0, gameboard.tileSize)) != null)
         {
             if (gameboard.GetTileGameObject((Vector2)transform.position + new Vector2(0, gameboard.tileSize)).tag == "Tile")
             {
                 pos += new Vector3(0, gameboard.tileSize);
                 transform.localEulerAngles = new Vector3(0, 0, 90);
                 usedAction = true;
+                playWalkSound();
+                transform.position = pos;
             }
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow) && transform.position == pos && gameboard.GetTileGameObject(transform.position + new Vector3(0, -gameboard.tileSize)) != null)
+        if (Input.GetKeyDown(KeyCode.DownArrow) && gameboard.GetTileGameObject(transform.position + new Vector3(0, -gameboard.tileSize)) != null)
         {
             if (gameboard.GetTileGameObject((Vector2)transform.position + new Vector2(0, -gameboard.tileSize)).tag == "Tile")
             {
                 pos += new Vector3(0, -gameboard.tileSize);
                 transform.localEulerAngles = new Vector3(0, 0, 270);
                 usedAction = true;
+                playWalkSound();
+                transform.position = pos;
             }
         }
 
@@ -104,8 +118,6 @@ public class Player2MovementGrid : PlayerBehaviour
         {
             //transform.position = Vector3.MoveTowards(transform.position, pos, Time.deltaTime * speed);
 
-            playWalkSound();
-            transform.position = pos;
             gamemanager.EndTurn();
             usedAction = false;
         }
