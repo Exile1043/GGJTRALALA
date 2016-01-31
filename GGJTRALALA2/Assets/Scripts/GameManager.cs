@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Player currentPlayer;
     [SerializeField]
-    private float shotCounterTotal;
+    private float shotCounterTotal = 10.0f;
     private float shotCounterCurrent;
     private bool gamePaused = false;
     private float xPosition;
