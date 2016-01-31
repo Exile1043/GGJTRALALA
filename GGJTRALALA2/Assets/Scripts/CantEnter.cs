@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CantEnter : MonoBehaviour
+public class CantEnter : TileRule
 {
 
     GameObject[] players;
@@ -19,6 +19,11 @@ public class CantEnter : MonoBehaviour
     void Update()
     {
         CheckForPlayer();
+    }
+
+    override void ApplyRule()
+    {
+
     }
 
     void CheckForPlayer()
