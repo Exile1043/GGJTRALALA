@@ -4,7 +4,7 @@ using System.Collections;
 public class CreateGameboard : MonoBehaviour {
     public GameObject[] tiles;
     public int gridSize;
-    float tileSize = 0;
+    public float tileSize = 0;
 
     GameObject[][] gameBoardGrid;
 
@@ -16,8 +16,7 @@ public class CreateGameboard : MonoBehaviour {
         tileSize = tiles[0].GetComponent<Renderer>().bounds.size.x;
         Create();
         GetGrid();
-        //example shift
-        ShiftTiles(new Vector2(0, 0) , 2);
+        
     }
 	
 	// Update is called once per frame
@@ -71,47 +70,78 @@ public class CreateGameboard : MonoBehaviour {
     {
         int[] playerCoords = { 0, 0 };
         playerCoords = GetTilePosition(playerPosition);
+        Debug.Log(playerCoords);
+        GameObject temp = null;
         switch (playerDirection)
         {
             case 0:
                 //up
                 for (int i = 0; i < gridSize; i++)
-                {   
-                    if(i > 0)
-                        gameBoardGrid[playerCoords[0]][i].transform.position += new Vector3(0, tileSize);
+                {
+                    if (i == 0)
+                    {
+                        temp = gameBoardGrid[playerCoords[0]][i];
+                    }
                     else
-                        gameBoardGrid[playerCoords[0]][i].transform.position -= new Vector3(0, tileSize * (gridSize-1));
+                    {
+                        gameBoardGrid[playerCoords[0]][i - 1] = gameBoardGrid[playerCoords[0]][i];
+                        gameBoardGrid[playerCoords[0]][i].transform.position += new Vector3(0, tileSize);
+                    }
                 }
+                temp.transform.position -= new Vector3(0, tileSize * (gridSize - 1));
+                gameBoardGrid[playerCoords[0]][gridSize-1] = temp;
                 break;
             case 1:
                 //left
                 for (int i = 0; i < gridSize; i++)
                 {
-                    if (i > 0)
-                        gameBoardGrid[i][playerCoords[1]].transform.position -= new Vector3(tileSize, 0);
+                    if (i == 0)
+                    {
+                        temp = gameBoardGrid[i][playerCoords[1]];
+                        Debug.Log(playerCoords[1]);
+                    }
                     else
-                        gameBoardGrid[i][playerCoords[1]].transform.position += new Vector3(tileSize * (gridSize - 1), 0);
+                    {
+                        gameBoardGrid[i - 1][playerCoords[1]] = gameBoardGrid[i][playerCoords[1]];
+                        gameBoardGrid[i][playerCoords[1]].transform.position -= new Vector3(tileSize, 0);
+                    }
                 }
+                temp.transform.position += new Vector3(tileSize * (gridSize - 1), 0);
+                gameBoardGrid[gridSize-1][playerCoords[1]] = temp;
                 break;
             case 2:
                 //right
-                for (int i = 0; i < gridSize; i++)
+                for (int i = gridSize-1; i >= 0; i--)
                 {
-                    if (i < gridSize-1)
-                        gameBoardGrid[i][playerCoords[1]].transform.position += new Vector3(tileSize, 0);
+                    if (i == gridSize-1)
+                    {
+                        temp = gameBoardGrid[i][playerCoords[1]];
+                    }
                     else
-                        gameBoardGrid[i][playerCoords[1]].transform.position -= new Vector3(tileSize * (gridSize - 1), 0);
+                    {
+                        gameBoardGrid[i + 1][playerCoords[1]] = gameBoardGrid[i][playerCoords[1]];
+                        gameBoardGrid[i][playerCoords[1]].transform.position += new Vector3(tileSize, 0);
+                    }
                 }
+                temp.transform.position -= new Vector3(tileSize * (gridSize - 1), 0);
+                gameBoardGrid[0][playerCoords[1]] = temp;
                 break;
             case 3:
                 //down
-                for (int i = 0; i < gridSize; i++)
+                for (int i = gridSize -1; i >= 0; i--)
                 {
-                    if (i < gridSize-1)
-                        gameBoardGrid[playerCoords[0]][i].transform.position -= new Vector3(0, tileSize, 0);
+                    if (i == gridSize - 1)
+                    {
+                        temp = gameBoardGrid[playerCoords[0]][i];
+                    }
                     else
-                        gameBoardGrid[playerCoords[0]][i].transform.position += new Vector3(0, tileSize * (gridSize - 1), 0);
+                    {
+                        gameBoardGrid[playerCoords[0]][i + 1] = gameBoardGrid[playerCoords[0]][i];
+                        gameBoardGrid[playerCoords[0]][i].transform.position -= new Vector3(0, tileSize);
+                    }
                 }
+                temp.transform.position += new Vector3(0, tileSize * (gridSize - 1), 0);
+                gameBoardGrid[playerCoords[0]][0] = temp;
                 break;
             default:
                 Debug.Log("Direction needs to be an int 0-3");
@@ -119,11 +149,22 @@ public class CreateGameboard : MonoBehaviour {
         }
     }
 
-   public int[] GetTilePosition(Vector2 position)
+    public int[] GetTilePosition(Vector2 position)
     {
         int[] tileCoord = { 0, 0 };
-        tileCoord[0] = (int)((position.x / tileSize) + (int)gridSize / 2);
-        tileCoord[1] = (int)((position.y / tileSize) + (int)gridSize / 2);
+        tileCoord[0] = (int)(Mathf.Round(position.x / tileSize) + gridSize / 2);
+        tileCoord[1] = -(int)(Mathf.Round(position.y / tileSize) - gridSize / 2);
         return tileCoord;
+    }
+
+    public GameObject GetTileGameObject(Vector2 position)
+    {
+        try {
+            return gameBoardGrid[GetTilePosition(position)[0]][GetTilePosition(position)[1]];
+        }
+        catch
+        {
+            return null;
+        }
     }
 }
