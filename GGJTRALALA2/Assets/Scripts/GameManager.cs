@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour
     public int scoreP1 = 0;
     public int scoreP2 = 0;
 
+    public string[] tileRuleQueue = { "\n onlyBlue", "\n onlyGreen", "\n arrow", "\n withImpl", "\n withoutImp" };
+    private string currentRule;
+
     public PlayerBehaviour player1;
     public PlayerBehaviour player2;
 
@@ -35,14 +38,14 @@ public class GameManager : MonoBehaviour
         //Check if instance already exists
         if (instance == null)
 
-        //if not, set instance to this
-        instance = this;
+            //if not, set instance to this
+            instance = this;
 
         //If instance already exists and it's not this:
         else if (instance != this)
 
-        //Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of a GameManager.
-        Destroy(gameObject);
+            //Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of a GameManager.
+            Destroy(gameObject);
 
         //Sets this to not be destroyed when reloading scene
         DontDestroyOnLoad(gameObject);
@@ -60,6 +63,8 @@ public class GameManager : MonoBehaviour
         //Call the SetupScene function of the BoardManager script, pass it current level number.
         randomGemScript.SetupScene(level);
 
+        //Call the shuffleQueue method to shuffle the tilerule list.
+        shuffleQueue();
     }
 
 
@@ -108,6 +113,22 @@ public class GameManager : MonoBehaviour
         Debug.Log("Player is now: " + currentPlayer);
     }
 
+    public void shuffleQueue()
+    {
+        // Knuth algorithm, http://algs4.cs.princeton.edu/11model/Knuth.java.html
+        for (int t = 0; t < tileRuleQueue.Length; t++)
+        {
+            string tmp = tileRuleQueue[t];
+            int r = Random.Range(t, tileRuleQueue.Length);
+            tileRuleQueue[t] = tileRuleQueue[r];
+            tileRuleQueue[r] = tmp;
+        }
+    }
+
+    public string ReturnTileRule()
+    {
+        return currentRule;
+    }
 
     void OnGUI()
     {
@@ -116,13 +137,19 @@ public class GameManager : MonoBehaviour
         GUI.Label(new Rect(15, Screen.height / 2 + 20, 250, 250), "<size=20>Player 1 Score: " + Mathf.CeilToInt(scoreP1).ToString() + " / 3</size>");
         GUI.Label(new Rect(Screen.width - 230, Screen.height / 2, 250, 250), "<size=20>Player 2 Inventory: " + Mathf.CeilToInt(inventoryP2).ToString() + " / 3</size>");
         GUI.Label(new Rect(Screen.width - 230, Screen.height / 2 + 20, 250, 250), "<size=20>Player 2 Score: " + Mathf.CeilToInt(scoreP2).ToString() + " / 3</size>");
+
+
+        for (int i = 0; i < tileRuleQueue.Length; i++)
+        {
+            GUI.Label(new Rect(Screen.width - 230, (10 * i), 250, 250), tileRuleQueue[i]);
+        }
     }
 
     public Player ReturnPlayer()
     {
         return currentPlayer;
     }
-        
+
     public void EndTurn()
     {
         SwitchPlayer();
