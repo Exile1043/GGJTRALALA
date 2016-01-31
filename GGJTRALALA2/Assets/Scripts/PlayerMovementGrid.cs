@@ -3,33 +3,6 @@ using System.Collections;
 
 public class PlayerMovementGrid : PlayerBehaviour
 {
-
-    public Vector3 pos, startingPos;
-    public float speed;
-    CreateGameboard gameboard;
-    GameManager gamemanager;
-    GameObject currentTile;
-    public int[] startCoord = { 0, 0 };
-    int[] currentCoord = { 0, 0 };
-    bool usedAction;
-    bool shifting;
-
-    // Use this for initialization
-    void Start()
-    {
-        base.Start();
-
-        gameboard = GameObject.Find("Gameboard").GetComponent<CreateGameboard>();
-        currentCoord = startCoord;
-        currentTile = gameboard.GetCoordTile(currentCoord[0], currentCoord[1]);
-        transform.parent = currentTile.transform;
-        startingPos = transform.position;
-        //Debug.Log(gameboard.GetTilePosition(new Vector2(5,5))[0]);
-        gamemanager = GameManager.instance;
-        usedAction = false;
-        shifting = false;
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -46,24 +19,30 @@ public class PlayerMovementGrid : PlayerBehaviour
             shifting = true;
             if (Input.GetKeyDown(KeyCode.W))
             {
+                //Should apply random rule to current tile here.
+
                 gameboard.ShiftTiles(currentCoord, 0);
+                
                 usedAction = true;
                 shifting = false;
             }
             else if (Input.GetKeyDown(KeyCode.A))
             {
+                //Should apply random rule to current tile here.
                 gameboard.ShiftTiles(currentCoord, 1);
                 usedAction = true;
                 shifting = false;
             }
             else if (Input.GetKeyDown(KeyCode.D))
             {
+                //Should apply random rule to current tile here.
                 gameboard.ShiftTiles(currentCoord, 2);
                 usedAction = true;
                 shifting = false;
             }
             else if (Input.GetKeyDown(KeyCode.S))
             {
+                //Should apply random rule to current tile here.
                 gameboard.ShiftTiles(currentCoord, 3);
                 usedAction = true;
                 shifting = false;
@@ -75,7 +54,10 @@ public class PlayerMovementGrid : PlayerBehaviour
         {
             if (gameboard.GetCoordTile(currentCoord[0] - 1, currentCoord[1]).tag == "Tile")
             {
+                CheckTileRule();
                 currentTile = gameboard.GetCoordTile(currentCoord[0] - 1, currentCoord[1]);
+                CheckTileRule();
+                CheckTileGem();
                 currentCoord[0]--;
                 transform.localEulerAngles = new Vector3(0, 0, 180);
                 usedAction = true;
@@ -87,7 +69,10 @@ public class PlayerMovementGrid : PlayerBehaviour
         {
             if (gameboard.GetCoordTile(currentCoord[0] + 1, currentCoord[1]).tag == "Tile")
             {
+                CheckTileRule();
                 currentTile = gameboard.GetCoordTile(currentCoord[0] + 1, currentCoord[1]);
+                CheckTileRule();
+                CheckTileGem();
                 currentCoord[0]++;
                 transform.localEulerAngles = new Vector3(0, 0, 0);
                 usedAction = true;
@@ -100,7 +85,10 @@ public class PlayerMovementGrid : PlayerBehaviour
             Debug.Log("W pressed");
             if (gameboard.GetCoordTile(currentCoord[0], currentCoord[1] - 1).tag == "Tile")
             {
+                CheckTileRule();
                 currentTile = gameboard.GetCoordTile(currentCoord[0], currentCoord[1] - 1);
+                CheckTileRule();
+                CheckTileGem();
                 currentCoord[1]--;
                 transform.localEulerAngles = new Vector3(0, 0, 90);
                 usedAction = true;
@@ -112,7 +100,10 @@ public class PlayerMovementGrid : PlayerBehaviour
         {
             if (gameboard.GetCoordTile(currentCoord[0], currentCoord[1] + 1).tag == "Tile")
             {
+                CheckTileRule();
                 currentTile = gameboard.GetCoordTile(currentCoord[0], currentCoord[1] + 1);
+                CheckTileRule();
+                CheckTileGem();
                 currentCoord[1]++;
                 transform.localEulerAngles = new Vector3(0, 0, 270);
                 usedAction = true;

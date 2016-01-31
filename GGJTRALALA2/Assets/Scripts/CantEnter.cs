@@ -18,12 +18,12 @@ public class CantEnter : TileRule
     // Update is called once per frame
     void Update()
     {
-        CheckForPlayer();
+
     }
 
     public override void ApplyRule()
     {
-
+        CheckForPlayer();
     }
 
     void CheckForPlayer()
