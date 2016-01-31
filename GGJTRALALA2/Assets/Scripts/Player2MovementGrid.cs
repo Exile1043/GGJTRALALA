@@ -4,11 +4,13 @@ using System.Collections;
 public class Player2MovementGrid : PlayerBehaviour
 {
 
-    public Vector3 pos, startingPos;
+    Vector3 pos;
     public float speed;
     CreateGameboard gameboard;
     GameManager gamemanager;
     GameObject currentTile;
+    public int[] startCoord = { 0, 0 };
+    int[] currentCoord = { 0, 0 };
     bool usedAction;
     bool shifting;
 
@@ -18,96 +20,99 @@ public class Player2MovementGrid : PlayerBehaviour
         base.Start();
 
         gameboard = GameObject.Find("Gameboard").GetComponent<CreateGameboard>();
-        currentTile = gameboard.GetTileGameObject(transform.position);
+        currentCoord = startCoord;
+        currentTile = gameboard.GetCoordTile(currentCoord[0], currentCoord[1]);
         transform.parent = currentTile.transform;
-        pos = transform.position;
-        startingPos = transform.position;
         //Debug.Log(gameboard.GetTilePosition(new Vector2(5,5))[0]);
         gamemanager = GameManager.instance;
         usedAction = false;
         shifting = false;
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        currentTile = gameboard.GetTileGameObject(transform.position);
         transform.parent = currentTile.transform;
+        transform.position = currentTile.transform.position;
+        gameboard = GameObject.Find("Gameboard").GetComponent<CreateGameboard>();
         if (!canAct)
             return;
 
-        Debug.Log("Player2 Movement Update Active");
-
-        if (Input.GetKeyDown(KeyCode.RightShift) || shifting == true)
+        Debug.Log("Player1 Movement Update Active");
+        if (Input.GetKeyDown(KeyCode.LeftShift) || shifting == true)
         {
             Debug.Log(shifting);
             shifting = true;
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                gameboard.ShiftTiles(transform.position, 0);
+                gameboard.ShiftTiles(currentCoord, 0);
                 usedAction = true;
                 shifting = false;
             }
             else if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                gameboard.ShiftTiles(transform.position, 1);
+                gameboard.ShiftTiles(currentCoord, 1);
                 usedAction = true;
                 shifting = false;
             }
             else if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                gameboard.ShiftTiles(transform.position, 2);
+                gameboard.ShiftTiles(currentCoord, 2);
                 usedAction = true;
                 shifting = false;
             }
             else if (Input.GetKeyDown(KeyCode.DownArrow))
             {
-                gameboard.ShiftTiles(transform.position, 3);
+                gameboard.ShiftTiles(currentCoord, 3);
                 usedAction = true;
                 shifting = false;
             }
             return;
         }
-        
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && gameboard.GetTileGameObject(transform.position + new Vector3(-gameboard.tileSize, 0)) != null)
+
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && gameboard.GetCoordTile(currentCoord[0] - 1, currentCoord[1]) != null)
         {
-            if (gameboard.GetTileGameObject((Vector2)transform.position + new Vector2(-gameboard.tileSize, 0)).tag == "Tile")
+            if (gameboard.GetCoordTile(currentCoord[0] - 1, currentCoord[1]).tag == "Tile")
             {
-                pos += new Vector3(-gameboard.tileSize, 0);
+                currentTile = gameboard.GetCoordTile(currentCoord[0] - 1, currentCoord[1]);
+                currentCoord[0]--;
                 transform.localEulerAngles = new Vector3(0, 0, 180);
                 usedAction = true;
                 playWalkSound();
                 transform.position = pos;
             }
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow) && gameboard.GetTileGameObject(transform.position + new Vector3(gameboard.tileSize, 0)) != null)
+        else if (Input.GetKeyDown(KeyCode.RightArrow) && gameboard.GetCoordTile(currentCoord[0] + 1, currentCoord[1]) != null)
         {
-            if (gameboard.GetTileGameObject((Vector2)transform.position + new Vector2(gameboard.tileSize, 0)).tag == "Tile")
+            if (gameboard.GetCoordTile(currentCoord[0] + 1, currentCoord[1]).tag == "Tile")
             {
-                pos += new Vector3(gameboard.tileSize, 0);
+                currentTile = gameboard.GetCoordTile(currentCoord[0] + 1, currentCoord[1]);
+                currentCoord[0]++;
                 transform.localEulerAngles = new Vector3(0, 0, 0);
                 usedAction = true;
                 playWalkSound();
                 transform.position = pos;
             }
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow) && gameboard.GetTileGameObject(transform.position + new Vector3(0, gameboard.tileSize)) != null)
+        else if (Input.GetKeyDown(KeyCode.UpArrow) && gameboard.GetCoordTile(currentCoord[0], currentCoord[1] - 1) != null)
         {
-            if (gameboard.GetTileGameObject((Vector2)transform.position + new Vector2(0, gameboard.tileSize)).tag == "Tile")
+            Debug.Log("W pressed");
+            if (gameboard.GetCoordTile(currentCoord[0], currentCoord[1] - 1).tag == "Tile")
             {
-                pos += new Vector3(0, gameboard.tileSize);
+                currentTile = gameboard.GetCoordTile(currentCoord[0], currentCoord[1] - 1);
+                currentCoord[1]--;
                 transform.localEulerAngles = new Vector3(0, 0, 90);
                 usedAction = true;
                 playWalkSound();
                 transform.position = pos;
             }
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow) && gameboard.GetTileGameObject(transform.position + new Vector3(0, -gameboard.tileSize)) != null)
+        else if (Input.GetKeyDown(KeyCode.DownArrow) && gameboard.GetCoordTile(currentCoord[0], currentCoord[1] + 1) != null)
         {
-            if (gameboard.GetTileGameObject((Vector2)transform.position + new Vector2(0, -gameboard.tileSize)).tag == "Tile")
+            if (gameboard.GetCoordTile(currentCoord[0], currentCoord[1] + 1).tag == "Tile")
             {
-                pos += new Vector3(0, -gameboard.tileSize);
+                currentTile = gameboard.GetCoordTile(currentCoord[0], currentCoord[1] + 1);
+                currentCoord[1]++;
                 transform.localEulerAngles = new Vector3(0, 0, 270);
                 usedAction = true;
                 playWalkSound();
@@ -118,6 +123,7 @@ public class Player2MovementGrid : PlayerBehaviour
         if (usedAction)
         {
             //transform.position = Vector3.MoveTowards(transform.position, pos, Time.deltaTime * speed);
+
 
             gamemanager.EndTurn();
             usedAction = false;

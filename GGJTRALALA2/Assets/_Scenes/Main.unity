@@ -142,7 +142,20 @@ Prefab:
       propertyPath: shotCounterTotal
       value: 10
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 11494036, guid: 4455fb091c35d544d914e2ac44126e9c, type: 2}
+      propertyPath: columns
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 11494036, guid: 4455fb091c35d544d914e2ac44126e9c, type: 2}
+      propertyPath: rows
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 11494036, guid: 4455fb091c35d544d914e2ac44126e9c, type: 2}
+      propertyPath: gems
+      value: 6
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 11494036, guid: 4455fb091c35d544d914e2ac44126e9c, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 4455fb091c35d544d914e2ac44126e9c, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1153434433
@@ -154,11 +167,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 496268, guid: 59da3159a48e68349addddda190552eb, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 2.56
+      value: -3.84
       objectReference: {fileID: 0}
     - target: {fileID: 496268, guid: 59da3159a48e68349addddda190552eb, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1.28
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 496268, guid: 59da3159a48e68349addddda190552eb, type: 2}
       propertyPath: m_LocalPosition.z
@@ -184,6 +197,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11462720, guid: 59da3159a48e68349addddda190552eb, type: 2}
+      propertyPath: startCoord.Array.data[0]
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 59da3159a48e68349addddda190552eb, type: 2}
   m_IsPrefabParent: 0
@@ -196,11 +213,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 401738, guid: 622d15ddec8cd974a96388d2e6824870, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 2.56
+      value: 3.84
       objectReference: {fileID: 0}
     - target: {fileID: 401738, guid: 622d15ddec8cd974a96388d2e6824870, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.28
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 401738, guid: 622d15ddec8cd974a96388d2e6824870, type: 2}
       propertyPath: m_LocalPosition.z
@@ -755,6 +772,23 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc34de29d02e5264f88453c0eca61a03, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1620370387 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 148804, guid: 4455fb091c35d544d914e2ac44126e9c, type: 2}
+  m_PrefabInternal: {fileID: 824511296}
+--- !u!114 &1620370388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1620370387}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2488d38dc707d2449942f104891afb62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gem: {fileID: 131310, guid: 848bec838d89c1a468ef9c68555ecd55, type: 2}
+  gemAmount: 6
 --- !u!1 &2023332330
 GameObject:
   m_ObjectHideFlags: 0
