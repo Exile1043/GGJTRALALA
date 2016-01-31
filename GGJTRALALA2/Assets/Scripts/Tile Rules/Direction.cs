@@ -12,4 +12,9 @@ public class Direction : TileRule {
 	void Update () {
 	
 	}
+
+    public override void ApplyRule()
+    {
+        Debug.Log("Direction");
+    }
 }

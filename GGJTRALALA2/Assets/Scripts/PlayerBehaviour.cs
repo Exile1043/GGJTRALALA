@@ -92,22 +92,29 @@ public class PlayerBehaviour : MonoBehaviour {
         {
             case "\n arrow":
                 currentTileContents.SetRule(new Direction());
+                Debug.Log("Direction added to tile");
                 break;
             case "\n onlyBlue":
                 currentTileContents.SetRule(new OnlyBlue());
+                Debug.Log("Only Blue added to tile");
                 break;
             case "\n onlyGreen":
                 currentTileContents.SetRule(new OnlyGreen());
+                Debug.Log("Only Green added to tile");
                 break;
             case "\n withImpl":
                 currentTileContents.SetRule(new OnlyImplement());
+                Debug.Log("Only Implement added to tile");
                 break;
             case "\n withoutImp":
                 currentTileContents.SetRule(new NoImplement());
+                Debug.Log("No Implement added to tile");
+                break;
+            default:
+                Debug.Log("No Rule Returned.");
                 break;
         }
-            
-        //if(currentTileContents != null)
+           // if(currentTileContents != null)
     }
 
     protected void CheckTileRule()

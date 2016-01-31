@@ -160,7 +160,7 @@ public class GameManager : MonoBehaviour
             return currentRule;
         } else
         {
-            return currentRule;
+            return null;
         }
     }
 

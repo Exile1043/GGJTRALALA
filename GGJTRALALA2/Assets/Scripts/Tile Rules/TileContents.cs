@@ -6,9 +6,15 @@ public class TileContents : MonoBehaviour {
     private TileRule Rule; //
     private GameObject Gem;
 
+    public Sprite Direction;
+    public Sprite OnlyGreen;
+    public Sprite OnlyBlue;
+    public Sprite NoImplement;
+    public Sprite OnlyImplement;
+
 	public TileRule ReturnRule()
     {
-        if (Rule)
+        if (Rule != null)
             return Rule;
         else
             return null;
@@ -16,6 +22,7 @@ public class TileContents : MonoBehaviour {
 
     public TileRule SetRule(TileRule newRule)
     {
+
         Rule = newRule;
         return newRule;
     }

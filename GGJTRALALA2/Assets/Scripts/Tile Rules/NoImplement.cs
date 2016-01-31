@@ -15,6 +15,6 @@ public class NoImplement : TileRule {
 
     public override void ApplyRule()
     {
-
+        Debug.Log("NoImplement");
     }
 }

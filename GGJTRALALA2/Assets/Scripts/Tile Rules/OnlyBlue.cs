@@ -15,6 +15,6 @@ public class OnlyBlue : TileRule {
 
     public override void ApplyRule()
     {
-
+        Debug.Log("Only Blue");
     }
 }

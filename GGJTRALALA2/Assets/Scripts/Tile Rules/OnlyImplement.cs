@@ -15,6 +15,6 @@ public class OnlyImplement : TileRule {
 
     public override void ApplyRule()
     {
-
+        Debug.Log("Only Implement");
     }
 }

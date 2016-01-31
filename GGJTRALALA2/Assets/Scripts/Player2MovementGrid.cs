@@ -19,24 +19,28 @@ public class Player2MovementGrid : PlayerBehaviour
             shifting = true;
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
+                ApplyNewRule();
                 gameboard.ShiftTiles(currentCoord, 0);
                 usedAction = true;
                 shifting = false;
             }
             else if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
+                ApplyNewRule();
                 gameboard.ShiftTiles(currentCoord, 1);
                 usedAction = true;
                 shifting = false;
             }
             else if (Input.GetKeyDown(KeyCode.RightArrow))
             {
+                ApplyNewRule();
                 gameboard.ShiftTiles(currentCoord, 2);
                 usedAction = true;
                 shifting = false;
             }
             else if (Input.GetKeyDown(KeyCode.DownArrow))
             {
+                ApplyNewRule();
                 gameboard.ShiftTiles(currentCoord, 3);
                 usedAction = true;
                 shifting = false;

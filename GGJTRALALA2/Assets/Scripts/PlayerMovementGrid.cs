@@ -19,30 +19,28 @@ public class PlayerMovementGrid : PlayerBehaviour
             shifting = true;
             if (Input.GetKeyDown(KeyCode.W))
             {
-                //Should apply random rule to current tile here.
-
+                ApplyNewRule();
                 gameboard.ShiftTiles(currentCoord, 0);
-                
                 usedAction = true;
                 shifting = false;
             }
             else if (Input.GetKeyDown(KeyCode.A))
             {
-                //Should apply random rule to current tile here.
+                ApplyNewRule();
                 gameboard.ShiftTiles(currentCoord, 1);
                 usedAction = true;
                 shifting = false;
             }
             else if (Input.GetKeyDown(KeyCode.D))
             {
-                //Should apply random rule to current tile here.
+                ApplyNewRule();
                 gameboard.ShiftTiles(currentCoord, 2);
                 usedAction = true;
                 shifting = false;
             }
             else if (Input.GetKeyDown(KeyCode.S))
             {
-                //Should apply random rule to current tile here.
+                ApplyNewRule();
                 gameboard.ShiftTiles(currentCoord, 3);
                 usedAction = true;
                 shifting = false;

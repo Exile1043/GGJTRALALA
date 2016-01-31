@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TileRule : MonoBehaviour {
+public class TileRule {
 
 	// Use this for initialization
 	void Start () {
