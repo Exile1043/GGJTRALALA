@@ -3,10 +3,10 @@ using System.Collections;
 
 public class TileContents : MonoBehaviour {
 
-    private GameObject Rule; //
+    private TileRule Rule; //
     private GameObject Gem;
 
-	public GameObject ReturnRule()
+	public TileRule ReturnRule()
     {
         if (Rule)
             return Rule;
@@ -14,7 +14,7 @@ public class TileContents : MonoBehaviour {
             return null;
     }
 
-    public GameObject SetRule(GameObject newRule)
+    public TileRule SetRule(TileRule newRule)
     {
         Rule = newRule;
         return newRule;

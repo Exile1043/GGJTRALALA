@@ -13,7 +13,7 @@ public class TileRule : MonoBehaviour {
 	
 	}
 
-    virtual void ApplyRule()
+    public virtual void ApplyRule()
     {
 
     }

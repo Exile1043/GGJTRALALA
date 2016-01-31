@@ -21,7 +21,7 @@ public class CantEnter : TileRule
         CheckForPlayer();
     }
 
-    override void ApplyRule()
+    public override void ApplyRule()
     {
 
     }
