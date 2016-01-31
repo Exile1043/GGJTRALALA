@@ -33,10 +33,13 @@ public class GemSpawner : MonoBehaviour {
             y = Random.Range(0, gameboard.gridSize);
 
             currentGem = (GameObject)Instantiate(gem, new Vector3(x * gameboard.tileSize - 3 * gameboard.tileSize, y * gameboard.tileSize - 3 * gameboard.tileSize), Quaternion.identity);
-            /*while(!placed)
+            //currentTile = gameboard.GetTileGameObject(new Vector2(currentGem.transform.position.x, currentGem.transform.position.y));
+            Debug.Log(gameboard);
+
+            while (!placed)
             {
-                currentTile = gameboard.GetTileGameObject(new Vector2(0,0));
-                Debug.Log(gameboard);
+                currentTile = gameboard.GetTileGameObject(new Vector2(currentGem.transform.position.x, currentGem.transform.position.y));
+                
                 if (currentTile)
                 {
                     if (currentTile.tag == "Tile" && currentTile.transform.childCount == 0)
@@ -50,9 +53,9 @@ public class GemSpawner : MonoBehaviour {
                     x = Random.Range(0, gameboard.gridSize);
                     y = Random.Range(0, gameboard.gridSize);
 
-                    currentTile.transform.position = new Vector2(x, y);
+                    currentGem.transform.position = new Vector2(x, y);
                 }
-            }*/
+            }
         }
     }
 }
