@@ -45,5 +45,8 @@ public class PlayerBehaviour : MonoBehaviour {
     {
         int ranNum = Mathf.FloorToInt(Random.Range(1, 4));
         AudioSource.PlayClipAtPoint(WalkSoundList[ranNum], transform.position);
+    public GameManager.Player ReturnPlayer()
+    {
+        return thisPlayer;
     }
 }
