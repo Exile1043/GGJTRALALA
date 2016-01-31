@@ -22,7 +22,9 @@ public class GameManager : MonoBehaviour
     public int scoreP2 = 0;
 
     public string[] tileRuleQueue = { "\n onlyBlue", "\n onlyGreen", "\n arrow", "\n withImpl", "\n withoutImp" };
-    private string currentRule;
+    private string currentRule = " ";
+
+    public int counterReturn = 0;
 
     public PlayerBehaviour player1;
     public PlayerBehaviour player2;
@@ -127,7 +129,39 @@ public class GameManager : MonoBehaviour
 
     public string ReturnTileRule()
     {
-        return currentRule;
+        if (counterReturn == 0)
+        {
+            counterReturn++;
+            currentRule = tileRuleQueue[0];
+            return currentRule;
+        } else if(counterReturn == 1)
+        {
+            counterReturn++;
+            currentRule = tileRuleQueue[1];
+            return currentRule;
+        }
+        else if (counterReturn == 2)
+        {
+            counterReturn++;
+            currentRule = tileRuleQueue[2];
+            return currentRule;
+        }
+        else if (counterReturn == 3)
+        {
+            counterReturn++;
+            currentRule = tileRuleQueue[3];
+            return currentRule;
+        }
+        else if (counterReturn == 4)
+        {
+            currentRule = tileRuleQueue[4];
+            counterReturn = 0;
+            shuffleQueue();
+            return currentRule;
+        } else
+        {
+            return currentRule;
+        }
     }
 
     void OnGUI()
