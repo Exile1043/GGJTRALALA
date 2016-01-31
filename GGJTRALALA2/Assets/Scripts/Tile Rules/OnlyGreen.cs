@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class OnlyRed : TileRule {
+public class OnlyGreen : TileRule {
 
 	// Use this for initialization
 	void Start () {

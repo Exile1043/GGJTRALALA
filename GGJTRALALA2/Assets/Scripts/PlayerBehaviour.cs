@@ -87,6 +87,26 @@ public class PlayerBehaviour : MonoBehaviour {
     protected void ApplyNewRule()
     {
         getTileContentsScript();
+        string newRule = gamemanager.ReturnTileRule();
+        switch (newRule)
+        {
+            case "\n arrow":
+                currentTileContents.SetRule(new Direction());
+                break;
+            case "\n onlyBlue":
+                currentTileContents.SetRule(new OnlyBlue());
+                break;
+            case "\n onlyGreen":
+                currentTileContents.SetRule(new OnlyGreen());
+                break;
+            case "\n withImpl":
+                currentTileContents.SetRule(new OnlyImplement());
+                break;
+            case "\n withoutImp":
+                currentTileContents.SetRule(new NoImplement());
+                break;
+        }
+            
         //if(currentTileContents != null)
     }
 
