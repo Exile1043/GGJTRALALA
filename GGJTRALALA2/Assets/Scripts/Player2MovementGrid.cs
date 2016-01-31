@@ -4,7 +4,7 @@ using System.Collections;
 public class Player2MovementGrid : PlayerBehaviour
 {
 
-    Vector3 pos;
+    public Vector3 pos;
     public float speed;
     CreateGameboard gameboard;
     GameManager gamemanager;

@@ -35,13 +35,14 @@ public class CantEnter : TileRule
                 
                 if (player.GetComponent<PlayerBehaviour>().ReturnPlayer() == Player1)
                 {
-                    player.GetComponent<PlayerMovementGrid>().pos = player.GetComponent<PlayerMovementGrid>().startingPos;
-                    player.transform.position = player.GetComponent<PlayerMovementGrid>().startingPos;
+                    //player.GetComponent<PlayerMovementGrid>().pos = player.GetComponent<PlayerMovementGrid>().startingPos;
+                    //player.transform.position = player.GetComponent<PlayerMovementGrid>().startingPos;
                 }
                 else
                 {
-                    player.GetComponent<Player2MovementGrid>().pos = player.GetComponent<Player2MovementGrid>().startingPos;
-                    player.transform.position = player.GetComponent<Player2MovementGrid>().startingPos;
+                    //Player2MovementGrid playerMoveComponent = GetComponent<Player2MovementGrid>();
+                    //playerMoveComponent.pos = playerMoveComponent.startingPos;
+                    //player.transform.position = playerMoveComponent.startingPos;
                 }
                 
             }
