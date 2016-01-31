@@ -32,6 +32,16 @@ public class Player2MovementGrid : PlayerBehaviour
     // Update is called once per frame
     void Update()
     {
+        currentCoord[0] = currentCoord[0] % 7;
+        currentCoord[1] = currentCoord[1] % 7;
+        if(currentCoord[0] < 0)
+        {
+            currentCoord[0] = 6;
+        }
+        if (currentCoord[1] < 0)
+        {
+            currentCoord[1] = 6;
+        }
         transform.parent = currentTile.transform;
         transform.position = currentTile.transform.position;
         gameboard = GameObject.Find("Gameboard").GetComponent<CreateGameboard>();

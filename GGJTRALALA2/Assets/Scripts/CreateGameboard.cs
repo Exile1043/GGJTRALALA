@@ -173,10 +173,11 @@ public class CreateGameboard : MonoBehaviour {
                 break;
             case 3:
                 //down
-                for (int i = gridSize -1; i >= 0; i--)
+                for (int i = (gridSize -1); i >= 0; i--)
                 {
-                    if (i == gridSize - 1)
+                    if (i == (gridSize - 1))
                     {
+                        i = i % 7;
                         temp = gameBoardGrid[playerCoords[0]][i];
                     }
                     else
