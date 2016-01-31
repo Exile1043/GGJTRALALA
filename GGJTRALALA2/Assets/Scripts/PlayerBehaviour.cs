@@ -131,7 +131,7 @@ public class PlayerBehaviour : MonoBehaviour {
     {
         getTileContentsScript();
         if (currentTileContents.ReturnRule() != null)
-            currentTileContents.ReturnRule().ApplyRule();
+            currentTileContents.ReturnRule().ApplyRule(thisPlayer);
     }
 
     private void getTileContentsScript()

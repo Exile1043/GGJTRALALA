@@ -13,8 +13,10 @@ public class OnlyGreen : TileRule {
 	
 	}
 
-    public override void ApplyRule()
+    public override void ApplyRule(GameManager.Player targetPlayer)
     {
-        Debug.Log("Only Green");
+        if (targetPlayer == GameManager.Player.Player2);
+        GameManager.instance.removeGem(targetPlayer);
+        Debug.Log("Only Blue");
     }
 }

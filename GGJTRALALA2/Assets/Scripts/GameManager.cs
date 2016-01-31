@@ -143,6 +143,47 @@ public class GameManager : MonoBehaviour
         }
         Debug.Log("Player is now: " + currentPlayer);
     }
+    public void removeGem(Player targetPlayer)
+    {
+        if(targetPlayer == Player.Player1)
+        {
+            --inventoryP1;
+        }
+        else if(targetPlayer == Player.Player2)
+        {
+            --inventoryP2;
+        }
+
+    }
+
+    public void AddGem(bool score)
+    {
+        // if parameter score is not true, add gem to inventory
+        if (!score)
+
+            if (currentPlayer == Player.Player1 && inventoryP1 < 3)
+            {
+                ++inventoryP1;
+            }
+            else if (currentPlayer == Player.Player2 && inventoryP2 < 3)
+            {
+                ++inventoryP2;
+            }
+            // if true add gem to score
+        else if (score)
+            if (currentPlayer == Player.Player1 && scoreP1 < 3)
+            {
+                scoreP1 += inventoryP1;
+                inventoryP1Max -= inventoryP1;
+                inventoryP1 = 0;
+            }
+            else if (currentPlayer == Player.Player2 && scoreP2 < 3)
+            {
+                scoreP2 += inventoryP2;
+                inventoryP2Max -= inventoryP2;
+                inventoryP2 = 0;
+            }
+    }
 
     public void shuffleQueue()
     {

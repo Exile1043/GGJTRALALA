@@ -13,8 +13,10 @@ public class OnlyBlue : TileRule {
 	
 	}
 
-    public override void ApplyRule()
+    public override void ApplyRule(GameManager.Player targetPlayer)
     {
+        if (targetPlayer == GameManager.Player.Player1) ;
+        GameManager.instance.removeGem(targetPlayer);
         Debug.Log("Only Blue");
     }
 }

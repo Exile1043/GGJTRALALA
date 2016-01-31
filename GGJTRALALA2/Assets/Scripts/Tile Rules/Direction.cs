@@ -13,7 +13,7 @@ public class Direction : TileRule {
 	
 	}
 
-    public override void ApplyRule()
+    public override void ApplyRule(GameManager.Player targetPlayer)
     {
         Debug.Log("Direction");
     }

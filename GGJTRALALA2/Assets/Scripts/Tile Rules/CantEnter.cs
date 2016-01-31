@@ -21,10 +21,10 @@ public class CantEnter : TileRule
 
     }
 
-    public override void ApplyRule()
-    {
-        CheckForPlayer();
-    }
+    //public override void ApplyRule()
+    //{
+    //    CheckForPlayer();
+    //}
 
     void CheckForPlayer()
     {
