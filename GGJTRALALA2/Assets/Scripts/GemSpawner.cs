@@ -26,6 +26,7 @@ public class GemSpawner : MonoBehaviour {
         GameObject currentTile;
         bool placed;
         int x,y;
+        gameboard = GameObject.Find("Gameboard").GetComponent<CreateGameboard>();
         for (int i = 0; i < gemAmount; i++)
         {
             placed = false;
@@ -33,12 +34,14 @@ public class GemSpawner : MonoBehaviour {
             y = Random.Range(0, gameboard.gridSize);
 
             currentGem = (GameObject)Instantiate(gem, new Vector3(x * gameboard.tileSize - 3 * gameboard.tileSize, y * gameboard.tileSize - 3 * gameboard.tileSize), Quaternion.identity);
-            //currentTile = gameboard.GetTileGameObject(new Vector2(currentGem.transform.position.x, currentGem.transform.position.y));
+            currentTile = gameboard.GetCoordTile(x, y);
             Debug.Log(gameboard);
 
-            while (!placed)
+            int counter = 0;
+            while (!placed && counter < 30)
             {
-                currentTile = gameboard.GetTileGameObject(new Vector2(currentGem.transform.position.x, currentGem.transform.position.y));
+                counter++;
+                currentTile = gameboard.GetCoordTile(x, y);
                 
                 if (currentTile)
                 {
