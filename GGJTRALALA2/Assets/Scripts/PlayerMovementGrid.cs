@@ -10,7 +10,7 @@ public class PlayerMovementGrid : PlayerBehaviour
     GameManager gamemanager;
     GameObject currentTile;
     public int[] startCoord = { 0, 0 };
-    int[] currentCoord = { 0, 0 };
+    public int[] currentCoord = { 0, 0 };
     bool usedAction;
     bool shifting;
 
@@ -32,6 +32,7 @@ public class PlayerMovementGrid : PlayerBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(gameboard.GetTileCoords(currentTile)[0] + "," + gameboard.GetTileCoords(currentTile)[1]);
         transform.parent = currentTile.transform;
         transform.position = currentTile.transform.position;
         gameboard = GameObject.Find("Gameboard").GetComponent<CreateGameboard>();

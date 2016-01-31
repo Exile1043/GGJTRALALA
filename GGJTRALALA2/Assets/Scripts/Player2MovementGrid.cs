@@ -10,7 +10,7 @@ public class Player2MovementGrid : PlayerBehaviour
     GameManager gamemanager;
     GameObject currentTile;
     public int[] startCoord = { 0, 0 };
-    int[] currentCoord = { 0, 0 };
+    public int[] currentCoord = { 0, 0 };
     bool usedAction;
     bool shifting;
 
@@ -39,7 +39,7 @@ public class Player2MovementGrid : PlayerBehaviour
             return;
 
         Debug.Log("Player1 Movement Update Active");
-        if (Input.GetKeyDown(KeyCode.LeftShift) || shifting == true)
+        if (Input.GetKeyDown(KeyCode.RightShift) || shifting == true)
         {
             Debug.Log(shifting);
             shifting = true;
