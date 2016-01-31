@@ -66,11 +66,8 @@ public class CreateGameboard : MonoBehaviour {
         }
     }
 
-    public void ShiftTiles(Vector2 playerPosition, int playerDirection)
+    public void ShiftTiles(int[] playerCoords, int playerDirection)
     {
-        int[] playerCoords = { 0, 0 };
-        playerCoords = GetTilePosition(playerPosition);
-        Debug.Log(playerCoords);
         GameObject temp = null;
         switch (playerDirection)
         {
@@ -148,16 +145,28 @@ public class CreateGameboard : MonoBehaviour {
                 break;
         }
     }
+    public GameObject GetCoordTile(int x, int y)
+    {
+        GameObject Tile;
+        try {
+            Tile = gameBoardGrid[x][y];
+        }
+        catch
+        {
+            Tile = null;
+        }
+        return Tile;
+    }
 
-    public int[] GetTilePosition(Vector2 position)
+    /*public int[] GetTilePosition(Vector2 position)
     {
         int[] tileCoord = { 0, 0 };
         tileCoord[0] = (int)(Mathf.Round(position.x / tileSize) + gridSize / 2);
         tileCoord[1] = -(int)(Mathf.Round(position.y / tileSize) - gridSize / 2);
         return tileCoord;
-    }
+    }*/
 
-    public GameObject GetTileGameObject(Vector2 position)
+    /*public GameObject GetTileGameObject(Vector2 position)
     {
         try {
             return gameBoardGrid[GetTilePosition(position)[0]][GetTilePosition(position)[1]];
@@ -166,5 +175,5 @@ public class CreateGameboard : MonoBehaviour {
         {
             return null;
         }
-    }
+    }*/
 }

@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Player currentPlayer;
     [SerializeField]
-    private float shotCounterTotal;
+    private float shotCounterTotal = 10.0f;
     private float shotCounterCurrent;
     private bool gamePaused = false;
     private float xPosition;
@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
     void InitGame()
     {
         //Call the SetupScene function of the BoardManager script, pass it current level number.
-        randomGemScript.SetupScene(level);
+        //randomGemScript.SetupScene(level);
 
         //Call the shuffleQueue method to shuffle the tilerule list.
         shuffleQueue();
