@@ -8,6 +8,7 @@ public class PlayerMovementGrid : PlayerBehaviour
     public float speed;
     CreateGameboard gameboard;
     GameManager gamemanager;
+    GameObject currentTile;
     bool usedAction;
     bool shifting;
 
@@ -18,6 +19,8 @@ public class PlayerMovementGrid : PlayerBehaviour
 
         gameboard = GameObject.Find("Gameboard").GetComponent<CreateGameboard>();
         pos = transform.position;
+        currentTile = gameboard.GetTileGameObject(transform.position);
+        transform.parent = currentTile.transform;
         //Debug.Log(gameboard.GetTilePosition(new Vector2(5,5))[0]);
         gamemanager = GameManager.instance;
         usedAction = false;
@@ -27,6 +30,8 @@ public class PlayerMovementGrid : PlayerBehaviour
     // Update is called once per frame
     void Update()
     {
+        currentTile = gameboard.GetTileGameObject(transform.position);
+        transform.parent = currentTile.transform;
         if (!canAct)
             return;
 
@@ -69,6 +74,8 @@ public class PlayerMovementGrid : PlayerBehaviour
                 pos += new Vector3(-gameboard.tileSize, 0);
                 transform.localEulerAngles = new Vector3(0, 0, 180);
                 usedAction = true;
+                playWalkSound();
+                transform.position = pos;
             }
         }
         else if (Input.GetKeyDown(KeyCode.D) && transform.position == pos && gameboard.GetTileGameObject(transform.position + new Vector3(gameboard.tileSize, 0)) != null)
@@ -78,6 +85,8 @@ public class PlayerMovementGrid : PlayerBehaviour
                 pos += new Vector3(gameboard.tileSize, 0);
                 transform.localEulerAngles = new Vector3(0, 0, 0);
                 usedAction = true;
+                playWalkSound();
+                transform.position = pos;
             }
         }
         else if (Input.GetKeyDown(KeyCode.W) && transform.position == pos && gameboard.GetTileGameObject(transform.position + new Vector3(0, gameboard.tileSize)) != null)
@@ -87,6 +96,8 @@ public class PlayerMovementGrid : PlayerBehaviour
                 pos += new Vector3(0, gameboard.tileSize);
                 transform.localEulerAngles = new Vector3(0, 0, 90);
                 usedAction = true;
+                playWalkSound();
+                transform.position = pos;
             }
         }
         else if (Input.GetKeyDown(KeyCode.S) && transform.position == pos && gameboard.GetTileGameObject(transform.position + new Vector3(0, -gameboard.tileSize)) != null)
@@ -96,6 +107,8 @@ public class PlayerMovementGrid : PlayerBehaviour
                 pos += new Vector3(0, -gameboard.tileSize);
                 transform.localEulerAngles = new Vector3(0, 0, 270);
                 usedAction = true;
+                playWalkSound();
+                transform.position = pos;
             }
         }
 
@@ -103,8 +116,7 @@ public class PlayerMovementGrid : PlayerBehaviour
         {
             //transform.position = Vector3.MoveTowards(transform.position, pos, Time.deltaTime * speed);
 
-            playWalkSound();
-            transform.position = pos;
+            
             gamemanager.EndTurn();
             usedAction = false;
         }
